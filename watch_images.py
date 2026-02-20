@@ -67,17 +67,46 @@ class ImageHandler(FileSystemEventHandler):
             resize_if_needed(Path(event.src_path))
 
 
+def batch_resize():
+    """Resize all existing oversized images in game/images/ and subdirectories."""
+    count = 0
+    for ext in SUPPORTED:
+        for filepath in WATCH_DIR.rglob(f"*{ext}"):
+            try:
+                with Image.open(filepath) as img:
+                    w, h = img.size
+                    if w == TARGET_W and h == TARGET_H:
+                        continue
+                    if h > w:
+                        continue
+                    if w < TARGET_W and h < TARGET_H:
+                        continue
+                    print(f"  Resizing {filepath.relative_to(WATCH_DIR)}: {w}x{h} -> {TARGET_W}x{TARGET_H}")
+                    resized = img.resize((TARGET_W, TARGET_H), Image.LANCZOS)
+                    resized.save(filepath)
+                    count += 1
+            except Exception as e:
+                print(f"  Skipped {filepath.name}: {e}")
+    print(f"\nResized {count} images.")
+
+
 if __name__ == "__main__":
     if not WATCH_DIR.exists():
         print(f"Error: {WATCH_DIR} does not exist.")
         sys.exit(1)
 
-    print(f"Watching: {WATCH_DIR}")
+    if "--batch" in sys.argv:
+        print(f"Batch resizing all images in: {WATCH_DIR}")
+        print(f"Target: {TARGET_W}x{TARGET_H}\n")
+        batch_resize()
+        sys.exit(0)
+
+    print(f"Watching: {WATCH_DIR} (including subdirectories)")
     print(f"Target:   {TARGET_W}x{TARGET_H}")
     print(f"Press Ctrl+C to stop.\n")
 
     observer = Observer()
-    observer.schedule(ImageHandler(), str(WATCH_DIR), recursive=False)
+    observer.schedule(ImageHandler(), str(WATCH_DIR), recursive=True)
     observer.start()
 
     try:

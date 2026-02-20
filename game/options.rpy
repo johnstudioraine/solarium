@@ -1,8 +1,19 @@
-﻿## This file contains options that can be changed to customize your game.
+## This file contains options that can be changed to customize your game.
 ##
 ## Lines beginning with two '#' marks are comments, and you shouldn't uncomment
 ## them. Lines beginning with a single '#' mark are commented-out code, and you
 ## may want to uncomment them when appropriate.
+
+
+## Auto-fit all images to the game frame #######################################
+##
+## Any image shown with 'scene' or 'show' (without an explicit 'at' clause)
+## will be scaled to fill the 1920x1080 frame automatically.
+
+transform autofit:
+    xysize (1920, 1080)
+
+define config.default_transform = autofit
 
 
 ## Basics ######################################################################

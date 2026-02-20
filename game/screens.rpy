@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 ## Initialization
 ################################################################################
 
@@ -151,9 +151,11 @@ style say_label:
     properties gui.text_properties("name", accent=True)
     xalign gui.name_xalign
     yalign 0.5
+    outlines []
 
 style say_dialogue:
     properties gui.text_properties("dialogue")
+    outlines []
 
     xpos gui.dialogue_xpos
     xsize gui.dialogue_width
@@ -228,6 +230,7 @@ style choice_button is default:
 
 style choice_button_text is default:
     properties gui.text_properties("choice_button")
+    outlines []
 
 
 ## Quick Menu screen ###########################################################
@@ -276,6 +279,7 @@ style quick_button:
 
 style quick_button_text:
     properties gui.text_properties("quick_button")
+    outlines []
 
 
 ################################################################################
@@ -1295,6 +1299,7 @@ style notify_frame:
 
 style notify_text:
     properties gui.text_properties("notify")
+    outlines []
 
 
 ## NVL screen ##################################################################

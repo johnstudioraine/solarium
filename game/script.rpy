@@ -1,4 +1,4 @@
-﻿#page number = actual page number in google docs - 24
+#page number = actual page number in google docs - 24
 
 
 
@@ -20,7 +20,6 @@ screen prompt_screen(prompt_text):
         color "#ffffff"
         text_align 0.5
         xmaximum 1600
-        outlines [ (2, "#000000", 0, 0) ]  # Black outline for visibility
 
 # Helper label to show prompt text as overlay
 label prompt(prompt_text=""):
@@ -46,7 +45,6 @@ label cube:
             kigi "Dangerous animals must be put down."
             narrator "Kigi's voice is gentle. You suppose it was a quick death. Anything to protect the stragglers...and your fort."
             narrator "Still, the apprehension at your companions' reactions - at helping the person who might very well still be hunting Su'til - fills you with both dread and shame the moment you step out of the aircraft to set foot once more on solid ground."
-            hide kigikillsrattlers
             menu:
                 "Seek solace with Kigi.":
                     narrator "Suddenly, the nearby bubbling of the creek seems the most relieving sound, as you turn to seek it out. Kigi's strong grasp slips over your hand once again, leading you between the few trees to step onto the riverbank. You watch, blood pounding in your ears, as she sheds her suit in the shadows and wades into the rushing creek."
@@ -57,9 +55,7 @@ label cube:
                     narrator "A warm tongue caresses your fingers, followed by your throat."
                     narrator "When that same peak washes over you, it's cloaked in darkness rather than the odd exquisite kiss of the usually deadly sun."
                     narrator "The crisp air dries your soaked clothes pulled taut over heated flesh, the skin of your cheek nuzzled by what might be the curious muzzle of a cougar..."
-                    show mountainlion at truecenter
                     narrator "You can't say how long it's gone on when that light of dawn peeks through the trees - only that Kigi is gone."
-                    hide mountainlion
                     jump return_to_fort
                 "Return to the fort.":
                     jump return_to_fort
@@ -102,13 +98,11 @@ label the_lake:
 label behind_fort:
     scene fort1
     narrator "Explore the flats behind the fort's gated shelter out back. You spot what looks like a visor right outside the chainlink fence, covered in dust."
-    show visor
 
     menu:
         "Try the visor.":
             # early act 1
             narrator "In moments, you realize this is no ordinary sun visor - colors swirl before your eyes then slowly fade, as a humanoid form comes into view."
-            show scan
             narrator "No hair, pallid skin and dark sunken eyes, with black plus and minus signs marking their forehead. Their body flits in and out, sinuous limbs apparent in each flicker. This device must be for virtual reality scanning rather than for sun protection. An old form of entertainment..."
             scan "Hi there - thanks for picking me up, it's been stuffy in here. Call me Scan - it's what we do. More interesting than those sun visors, if you ask me."
             narrator "Scan must notice your quizzical look."
@@ -156,7 +150,6 @@ return
 
 label wilds_right:
     scene bear
-    show bear_exploration
     narrator "Explore the Wilds."
     menu:
         "Go right.":
@@ -221,7 +214,6 @@ return
 # act ii
 label behind_fort_act2:
     scene fort
-    show scan
     narrator "The moment you put on the VR headset, Scan appears."
     scan "Long time, no see."
     menu:
@@ -256,12 +248,10 @@ label behind_fort_post_Olga:
     # act ii, post Olga's death
     scene fort
     narrator "You return to check on the box of visors."
-    show visor box
 
 
     menu:
         "Put on the visor you found behind the shelter gate.":
-            show scan
             narrator "Sure enough, Scan appears again. Have you shared the visors with your comrades yet? We can all help each other."
         "Who are you really?":
             narrator "Scan frowns."
@@ -358,7 +348,6 @@ label solarium_perimeter:
         "Venture into the chasm before you.":
             narrator "The cool shadows surround you in an instant. The low ceiling overhead shines with dim lights along the tattered molding. You walk for a time, possible hours blending together, hope of what you could find down here keeping your feet moving - a safe route to another solarium not under Olga's control, perhaps? A haven where uninfected elites or even imprisoned stragglers might be-"
             narrator "A low growl stops you in your tracks. Slowly, you turn to see a looped tongue dangling in the low light."
-            show rattler1
             menu:
                 "Keep still.":
                     jump you_have_died
@@ -423,7 +412,6 @@ label solarium_perimeter_run_loop:
 
 label bridge_forest:
     #stop music
-    show enki
     #play sound "sound/enki.ogg"
     narrator "Wander the forest, steering clear of the camp to see a great lump resting in a clearing - brown or…bronze? As you approach, amber eyes with slit pupils blink at you, as that gleaming roiling mass of flesh uncoils, undulating slowly toward you."
     narrator "As the distance closes between you, an unpleasant reverberation rings throughout your muscles. Seemingly in time with the creature's low drone and rippling form. Perhaps this was the melody Su'til mentioned, designed to make it past enemy detection."
@@ -433,7 +421,6 @@ label bridge_forest:
         "Look away and back up slowly.":
             #act iii
             narrator "You back up into something, turning around to see the Bridge."
-            show TheBridge
             thebridge "Clever {i}gishpa{/i} - still a healthy appreciation for humility. Create them as we may have, the du’sa choose us, not the other way around. They allow only respect…though, Enki here never minds a feisty morsel now and again."
             thebridge "You could have a taste of our true heat, the deluded bit of your mind burned away after so as not to recall the experience and fall into obsession."
             narrator "That reptilian amber eye roves over your face, and you wonder if these steeds are yet another specimen equipped with those special solar-powered cells. A shiver runs through you, as the Bridge’s strong fingers caress your chin followed by a brief touch of his forehead to yours."
@@ -445,7 +432,6 @@ label bridge_forest:
             narrator "The looming undercurrent soars into agony in your bones, as the creature's sound alone tears apart your flesh."
             narrator "Relief only comes with oblivion, as that maw envelopes you in darkness."
             jump you_have_died
-    hide enki
     jump actIII_start
 
 # BRIDGE PUZZLE:
@@ -1027,22 +1013,26 @@ define right = Position(xalign=1.0, yalign=1.0)
 
 #BEGINNING OF VISUAL DEMO
 label start:
-    # play music "audio/ominous.mp3"
+    scene sutils
+    play audio running
+    play audio thunder
 
-    scene sutilrunning
-    
     narrator "[sutil] of the sunborne braves the Siberian tundra on her trial mission to Earth."
 
-    scene sutilbehind
-
+    scene turnsback
     narrator "A snuffle from behind her draws her attention. [sutil] whips around to see nothing aside from shadows amid frigid howling gusts."
 
-    scene sutilrunning
-
     narrator "Making her way onward, she pauses again at the sound of footfalls."
+    play audio tran3
+    play audio bear
 
-    scene leaping
+    scene bearattack
+    play audio grunt
+
+
     narrator "Leaping to the side, [sutil] barely manages to avoid the charging bear."
+
+    stop music
 
     
 
@@ -1050,135 +1040,145 @@ label start:
 
     narrator "Su'til ducks just in time to avoid the swipe of a massive paw."
 
+    play audio thunder
+    play audio sub
+    play audio tran2
+    scene bearfalls
 
-    scene bearfalling
     narrator "Rearing backward, she catches her balance and turns to sprint for the nearby cliff ledge."
 
+    play audio breath
+
     narrator "Glancing down into the vast canyon below, Su'til waits for the bear's rapid footfalls to approach before diving out of the way. The bear hurtles over the cliffside."
-
-
+    
+    play audio shout
     narrator "Slightly winded, Su'til lets out a shout as the bear's claw takes a final swipe at her face."
 
-
+    play audio fallingb
     narrator "With a final elbow to its face, Su'til shoves the bear over the edge to its demise."
 
     narrator "Su'til falls to her knees with a winded sigh. The Messenger Kigi approaches."
     
-    #stop music fadeout 1.5
+    scene kigiapp
 
-    #play music "audio/darkambient.mp3"
+    play audio sub
 
-    scene kigicongrat
-    kigi "A valiant conquest, {i}nam’ud{/i}. Yet still lacking when measured up against your kin. We will return now for your further training with Kaskal.”"
+    kigi "A valiant conquest, {i}nam’ud{/i}. Yet still lacking when measured up against your kin. We will return now for your further training with Kaskal."
 
-    scene kaskalstation
+
+
+    scene kaskalsutil with fade
+
+    stop audio
+
+    play audio tran
+    play audio bg2
+
     narrator "Back at the star station, [sutil]'s handler Kaskal, the lead of the Til'amaru's Evolution branch, greets [sutil]."
     
 
-    scene kaskalclose
     
     kaskal "You fought well today, especially given the directive to avoid energy weaponization. Though…"
 
-    scene sutilclosescene
     sutil "It is still not enough."
 
-    scene kaskalclose
 
     kaskal "Our Messenger Kigi wants the best for all of you. She speaks highly of each one of you - more to me in private, I assure you."
 
 
-    scene sutilclosescene
     narrator "Su’til raises a brow in disbelief."
 
     sutil "I remember the warmth of her arms, as she held me - held all of us. I assume she's grown colder to prepare us for missions from the Bridge."
 
     narrator "Su’til doesn’t miss how Kaskal’s gaze falters at the mention of the Bridge. He gives a tight smile."
 
-    scene kaskalclose
     kaskal "As she has always balanced nurturing and mission fulfillment."
 
-    scene sutilclosescene
     sutil "Kaskal, tell me straight - why waste time on Earth? Those remaining are done for with their destroyed climate and constant violence."
 
-    scene kaskalclose
     kaskal "Su'til we have gone over this. You have far more to offer on the smaller scale. For Void exploration to truly matter, we must not forget where we come from…what we have left behind."
 
-    scene sutilclosescene
     sutil "I am beginning to think Messenger Kigi believes in me more than you do."
 
-    scene sutilclosescene
+    stop audio
 
-    scene companionbox2
+    play audio tran
+
+    scene fight with fade
+
+    play audio boxing
+
     narrator "Su’til trains with her sunborne companion, as they prepare for their respective missions - Earth and the Void, respectively."
+
 
     companion "Better. If you could maintain your balance."
 
-
-    scene sutilbox
+    
     narrator "Su’til opens her mouth for a retort when Kigi approaches."
 
 
-    scene kigigym with fade
-    kigi "That’s enough. You all must remember everyone is in this together. I will be by your side every step of the way. Just as I always have been. This mission has been five millennia in the making, and I will guide you through to fulfillment. Above all - the mission will only succeed through unity. Stand by for further orders tomorrow, and get some rest."
+    kigi "That’s enough. You all must remember everyone is in this together. I will be by your side every step of the way. Just as I always have been."
 
-    hide kigi
+    kigi "This mission has been five millennia in the making, and I will guide you through to fulfillment. Above all - the mission will only succeed through unity. Stand by for further orders tomorrow, and get some rest."
 
-    scene companionbox2 with fade
     narrator "Kigi departs, and the two sunborne regard one another with begrudging respect, the subtlest of nods."
 
 
     companion "A rematch."
 
-    scene sutilbox
+
     narrator "Su’til resumes fighting stance, confidence grown after besting the bear on Earth."
 
-    
-    scene lookingstars with fade 
+    scene kigiwindow with fade
+
+    play audio tran2
+    play music bg3
     narrator "A few days later..."
     narrator "Kigi stands gazing out at the starry Void. The Til'amaru's true mission is finally coming together."
 
-    scene spaceships 
     narrator "Su’til and her sunborne kin fly their craft in defense of Earth’s atmosphere from one of the many threats from the Void."
 
     sutil "We were almost caught off guard this time."
 
     companion "Lucky you noticed that deep space signature."
 
+
+    scene kigisutil2 with fade
     
     narrator "Not long after, Su’til answers a summons from Kigi. This time, Kigi is unusually affectionate."
-    scene supporting
     kigi "You all survived the onslaught, stars shone true."
 
     sutil "Everything for the mission."
 
     kigi "You improve all the time, my sunborne. I do not say it often, but just know…I am so proud of you. Never let what Kaskal says deter you. Your scars do not define your abilities. They are a sign of survival, same as mine."
-
     narrator "Overcome with emotion, Su’til blinks away tears."
 
+    narrator "Su’til departs the training room, the all-white walls fading to the metal corridor, as she leaves the practice area behind."
 
-    narrator "Su’til departs a training room, the all-white walls fading to the metal corridor, as she leaves the practice area behind."
-
-    scene supporting
     narrator "Kigi approaches, silver blond partially pulled back, framing her high cheekbones marred by decay, even if subtle compared to Su'til's own facial scars."
 
-    scene noi
     # 1103
     kigi "You are doing well, {i}nam'ud{/i}. Stars be good, you will prove ready soon for Void exploration."
+
+    scene confused2
+
     sutil "Messenger...Kaskal still worries my deformities might mean damaged abilities."
     
-    scene noi
     kigi "No. I believe in you. You are sunborne...destined to lead our expansion across the stars. In fact, I've decided you should be the first to know that you all have earned the honor of beholding the sun in all its glory."
 
     sutil "I...but that has never been allowed-"
     #1107
     kigi "I meant what I said. You have come far. The stars shine on you all. May the sun do the same."
 
-    scene companionan
     companion "At last, we can see the sun. It will be a monumental send-off before we set off for the Void."
+
+
+    stop audio
+
+    play audio radio
 
     narrator "Su'til smiles, as a voice speaks from the pager at her belt - Kaskal."
 
-    scene kaskalclose
     kaskal "Sut'il, please report to the viewing station for a debrief and training session."
 
     sutil "I will be there."
@@ -1187,10 +1187,18 @@ label start:
 
     narrator "Su’til goes to speak, when Kaskal’s voice speaks up again."
 
+
+    stop audio
+
+    stop music
+
+    play music breathe
+
     kaskal "{i}Now{/i}, Su'til."
 
 
-    scene sutilinspace 
+    scene sutilrun2
+
     #play sound "audio/powerfulwind.mp3"
     narrator "With that, Su'til hurries off to join Kaskal on the other side of the station."
 
@@ -1198,15 +1206,12 @@ label start:
 
     sutil "Kaskal-"
 
-    scene hurry 
     narrator "Kaskal turns toward his ward, fear in his dark eyes. He shoves her toward the exit, and she sprints down an immaculate silver corridor."
     kaskal "You must leave now! She's coming for you!"
 
-    scene runningtoexit
     narrator "[sutil] glances out of the nearest viewport."
 
 
-    scene solarium
     #stop music fadeout 1.5
     #1135
     narrator "Welcome to The Solarium!"
@@ -1217,31 +1222,38 @@ label start:
         $ player_name = "Unnamed player"
 
 label act1:
+
+    stop music
+    play music situation
+    scene intro with fade
     narrator "Name: [player_name] \nLocation: Midwest, North America \nDate: 10/05/2031 \n"
 
-    scene situation
     narrator "Situation: After the ozone layer mysteriously vanished, deadly UV rays have destroyed much of the wildlife and confined humanity to luxurious solar-powered compounds called solariums for the wealthy and sparse military shelters for everyone else."
 
-
-    scene leap
-
-    scene soldier
-
+    scene canyon with fade 
     narrator "You stare into the deep canyon below, loose pebbles tumbling over the ledge beneath your feet. Your drill Sergeant McKinley's hot breath fans your neck, as he lets out a low chuckle."
 
     #show leap at middleright
+    play music situation
 
-    scene steel
+    scene mckinley
     mckinley "Make the jump."
-    narrator "You didn't even bring any climbing gear... \nMcKinley notices your bewilderment and sneers. "
-    mckinley "Free jump, soldier. You're afraid, maybe you shoulda thought've that before stealing rations at base."
 
-    scene steel
+
+    narrator "You didn't even bring any climbing gear... \nMcKinley notices your bewilderment and sneers. "
+
+    play audio mad
+    mckinley "Free jump, soldier. You're afraid, maybe you shoulda thought've that before stealing rations at base."
+    
+    play audio tran2
+    scene canyon
     narrator "You steel yourself, calculating the distance, readying to jump based on the training you remember from camp--"
 
     menu:
         "Make the jump." if leap_deaths < 2:
-            narrator "You fall to your death."
+            scene falling2
+            play audio falling
+            narrator "McKinley's weight breaks your grip on the root you snagged, sending both of you tumbling to your deaths."
             $ leap_deaths += 1
             jump you_have_died
         "Take a second to muster your courage.":
@@ -1251,8 +1263,8 @@ label act1:
     return
 
 label you_have_died:
-    scene died
     menu:
+        narrator "You died."
         "Restart":
             jump act1
         "Main Menu":
@@ -1263,14 +1275,16 @@ label you_have_died:
 
 label muster_courage:
     #scene black
+    scene mckinley
 
-    scene steel 
-    scene soldier
+    play audio mad
     mckinley "Move it!"
 
-    scene steel
-    narrator "McKinley shoves you forward, sending you toppling over the edge." 
+    scene canyon
 
+    play audio grunt2
+    narrator "McKinley shoves you forward, sending you toppling over the edge." 
+    play audio fastbreath
     narrator "You flail, grasping onto the front of his uniform. He falls down with you, dangling from a grasp on your ankles, as you manage a weak grip on a thick root at the canyon's ledge."
  
     menu:
@@ -1279,70 +1293,114 @@ label muster_courage:
         "Do nothing." if kick_deaths < 2:
             $ kick_deaths += 1
 
+            scene falling2
+
             narrator "McKinley's weight breaks your grip on the root you snagged, sending both of you tumbling to your deaths."
             jump you_have_died
     return
 
 label kick_mckinley:
     #scene black
-
-    scene soldierfall
+    play audio falling
+    scene falling 
     narrator "You tell yourself it's the only way, as his yell tapers off into the crevasse below, his bulk knocking your pistol from its holster."
 
-    scene daytime
+    play audio fastbreath
+    scene forest with fade
     narrator "Scrambling up over the ledge with a grip strong enough to chafe your palms, you take a moment to shut your eyes and draw a deep breath."
+    play audio tweeting
+    play audio alert
+    narrator "The forest sings around you - birds tweeting, tree leaves rustling. You're alive - at least for now."
 
-    narrator "The forest sings around you - birds tweeting, tree leaves rustling. You're alive - at least for now. \n\nThe sunband on your wrist chirps out a warning. Charge at 60 percent. "
-    narrator "You trudge forward toward the tree line, determined to get your bearings before the daylight scorches you whole-- \n\nYou stop short at the sight of a blinding flash just beyond the tree line."
-    narrator "Blinking, you creep forward among the trunks of the final trees before the forest falls off to the great Wilds beyond. \n\nHigh above the vast expanse, a glimmer in the cloudless sky hints at a sunshield - the planet’s most advanced technology and final attempt at absorbing the deadly radiation - on its way down." 
+    narrator "The sunband on your wrist chirps out a warning. Charge at 60 percent."
+    narrator "You trudge forward toward the tree line, determined to get your bearings before the daylight scorches you whole--"
+
+    narrator "You stop short at the sight of a blinding flash just beyond the tree line."
+    narrator "Blinking, you creep forward among the trunks of the final trees before the forest falls off to the great Wilds beyond."
+
+    narrator "High above the vast expanse, a glimmer in the cloudless sky hints at a sunshield - the planet’s most advanced technology and final attempt at absorbing the deadly radiation - on its way down."
+
+    narrator "Movement catches your eye."
+
+    play audio tran2
 
     scene sutilforest
-    narrator "Movement catches your eye. \n\nThere, not fifteen feet away, stands a woman. Young, perhaps early twenties and of small stature, with black hair and olive skin. She stands with her face toward the sky, as if basking in the lethal rays." 
+
+    narrator "There, not fifteen feet away, stands a woman. Young, perhaps early twenties and of small stature, with black hair and olive skin. She stands with her face toward the sky, as if basking in the lethal rays."
     narrator "Small gems cover what could be scars marking her face, throat and exposed forearms."
     narrator "Perhaps strangest of all - she wears no protective gear, only a strange black and bronze full-body uniform." 
-    narrator "She's not wearing a sunband. \n\nTaking advantage of her apparent distraction, you dart behind the nearest small tree."
+    narrator "She's not wearing a sunband."
+    scene forest
+    narrator "Taking advantage of her apparent distraction, you dart behind the nearest small tree."
     narrator "As she fades out of sight, you continue backing up until your back hits something solid."
-    scene sutilannoyed
+
+    scene sutilforest2
     narrator "You turn to find yourself face-to-face with the strange woman, her expression torn in anguish."
 
 
     menu:
         "Go back to retrieve your fallen pistol." if pistol_deaths < 2:
+
+            scene ground
             narrator "You ignore the burn in your chest and legs, focusing on finding the fallen weapon before anything behind you can catch up." 
             narrator "Ducking behind a fern, you spot a clearing up ahead. A stream of sunlight through the canopy overhead illuminates McKinley's fallen body." 
-            narrator "Creeping around the corpse that you now see is bent at an odd angle at the torso, you see the gleam of metal several feet away - the pistol. \n\nGrasping the gun, you turn back for the tree line."
-            narrator "Holding your breath, you peek out from behind one of the trees nearest the field's edge... \n\nThere she is, face turned upward toward the lethal sun."
-            narrator "Definitely unstable in the head. \n\nDetermined to get past her, you tip-toe around fifteen feet to her left. But your footfalls must not have been quiet enough."
-            narrator "Those dark eyes open again, gaze fixed upon your before dropping to the weapon in your hand. \n\nShe unleashes a powerful heat blast, melting your flesh." 
+            narrator "Creeping around the corpse that you now see is bent at an odd angle at the torso, you see the gleam of metal several feet away - the pistol."
+
+            narrator "Grasping the gun, you turn back for the tree line."
+            narrator "Holding your breath, you peek out from behind one of the trees nearest the field's edge..."
+
+            scene sun2
+
+            narrator "There she is, face turned upward toward the lethal sun."
+            scene sutilforest
+            narrator "Definitely unstable in the head."
+
+
+            narrator "Determined to get past her, you tip-toe around fifteen feet to her left. But your footfalls must not have been quiet enough."
+            narrator "Those dark eyes open again, gaze fixed upon your before dropping to the weapon in your hand."
+
+            scene looking
+            narrator "She unleashes a powerful heat blast, melting your flesh."
             $ pistol_deaths += 1
             jump you_have_died
         "Approach carefully.":
+            scene skeptical
             narrator "The woman regards you as you get closer, but luckily doesn't react."
             jump without_protection
         "Avoid the woman and continue on alone.":
-            narrator "Trying your best to be silent, you give the woman a wide berth, circling around the corner of the field about thirty feet away. \n\nHer head snaps in your direction."
-            narrator "You freeze, as she walks toward you only to stop again, as if uncertain. \n\nYou decide to break the ice to show you're not a threat."
+            narrator "Trying your best to be silent, you give the woman a wide berth, circling around the corner of the field about thirty feet away."
+            scene skeptical
+            narrator "Her head snaps in your direction."
+            narrator "You freeze, as she walks toward you only to stop again, as if uncertain."
+
+            narrator "You decide to break the ice to show you're not a threat."
             jump without_protection
     return
 
 label without_protection:
-    scene sutilforest2
     "How are you out here without protection?"
+    scene skeptical
     narrator "Her eyes trail your form, as if sizing you up. "
     menu:
         "Let's start over - what's your name?":
             narrator "A slight pause precedes the response."
             sutil  "Su'til."
-            narrator "She speaks with the trace of an accent you can't place. Before the silence grows thick again, you reply with your own name. \n\nSu'til nods before glancing toward the horizon."
+            narrator "She speaks with the trace of an accent you can't place. Before the silence grows thick again, you reply with your own name."
+
+            narrator "Su'til nods before glancing toward the horizon."
             sutil "It'll be dark soon, we should find shelter. Then, I need to find an energy source."
-            narrator "Following her gaze to the outline of what looks to be a factory in the twilight-lit distance, you keep stride with her.\n\nA low whine sounds from behind you." #dogwhine
+            narrator "Following her gaze to the outline of what looks to be a factory in the twilight-lit distance, you keep stride with her."
+
+            narrator "A low whine sounds from behind you." #dogwhine
             jump low_whine
         "You'll get hurt out here without protection.":
             narrator "The woman speaks."
             sutil "I'm Su'til of the e'mul, and I don't need protection."
             narrator "Su'til turns back toward the horizon."
             sutil "You'll need to keep up. We can stay in that building up ahead until the storm passes."
-            narrator "Sure enough, what looks like a factory looms up ahead, stark against the twilight sky over the Wilds.\n\nA low whine sounds from behind you."
+            narrator "Sure enough, what looks like a factory looms up ahead, stark against the twilight sky over the Wilds."
+
+            narrator "A low whine sounds from behind you."
             jump low_whine
         "Are you from the local fort?":
             narrator "The woman cocks her head, pace slowing just a hair. She speaks."
@@ -1357,22 +1415,33 @@ label without_protection:
 
 #END OF VISUAL DEMO
 label low_whine: 
-    scene daytime
+    scene coyote2
+    play audio coyote
     narrator "You freeze at the sight of a scrawny coyote, a dark lip curled back over yellowed fangs. Too late though, as those glazed eyes fix on you, the creature slinking toward you with a quiet growl."
     narrator "You remember the jerky ration you snagged from bootcamp last night."
     menu:
         "Offer some of the jerky.":
             #jump offer_jerky
-            narrator "The starved animal gobbles up the meat as soon as it hits the ground. \n\nYou freeze, as that famished, expectant gaze looks up at you once again." 
-            "The air crackles with energy, Su'til staring down the creature from behind. It backs off, hackles raised and tail between its legs. "
-            "With another whine, the coyote trots off in the other direction. \n\nAvoiding what's likely a critical gaze from Su'til, you trudge onward."
+            narrator "The starved animal gobbles up the meat as soon as it hits the ground."
 
-            scene factory with fade
-            "The fatigue from the day is just starting to settle into your limbs when you finally reach a factory. \n\nBeside you, your traveling companion releases a sudden yelp -"
+            narrator "You freeze, as that famished, expectant gaze looks up at you once again."
+            "The air crackles with energy, Su'til staring down the creature from behind. It backs off, hackles raised and tail between its legs. "
+            "With another whine, the coyote trots off in the other direction."
+
+            scene skeptical
+
+            "Avoiding what's likely a critical gaze from Su'til, you trudge onward."
+            play audio tran2
+            stop music
+            scene factory with fade 
+            "The fatigue from the day is just starting to settle into your limbs when you finally reach a factory."
+
+            "Beside you, your traveling companion releases a sudden yelp -"
             narrator "not of pain, but it seems to check the area for signs of life."
             narrator "Su'til wastes no time pushing through the heavy double doors with a creak of metal in dire need of oil."
 
-            scene factoryinside
+            scene insidefactory
+            play audio thunder
             narrator "The moment you step into the shadows, a rumble of thunder sounds from outside, as the doors close behind you."
             narrator "The moonlight peeking through the gathering storm clouds outside filters through the high factory windows, illuminating the vast space."
             narrator "You spot the outlines of several large canisters - hydrosynth. The failed experiment of artificial water." 
@@ -1380,13 +1449,24 @@ label low_whine:
             jump coyote_choice
         "Move past the coyote.":
             #jump move_past_coyote
-            show coyote
-            narrator "Your heart leaps into your throat, as the coyote gives chase. \n\nThe air crackles with energy, Su'til staring down the creature from behind. It backs off of you, hackles raised and tail between its legs."
-            "With another whine, the coyote trots off in the other direction.\n\nAvoiding what's likely a critical gaze from Su'til, you trudge onward."
-            hide coyote
+            narrator "Your heart leaps into your throat, as the coyote gives chase."
+
+            narrator "The air crackles with energy, Su'til staring down the creature from behind. It backs off of you, hackles raised and tail between its legs."
+            "With another whine, the coyote trots off in the other direction."
+            scene skeptical
+            "Avoiding what's likely a critical gaze from Su'til, you trudge onward."
+            stop audio 
+            stop music
+            play music night
+
+            scene factory with fade 
+            play audio tran
             "The fatigue from the day is just starting to settle into your limbs when you finally reach a factory."
             "Beside you, your traveling companion releases a sudden yelp - not of pain, but it seems to check the area for signs of life."
+            play audio opendoor
             narrator "Su'til wastes no time pushing through the heavy double doors with a creak of metal in dire need of oil."
+            play audio thunder
+            scene insidefactory
             "The moment you step into the shadows, a rumble of thunder sounds from outside, as the doors close behind you."
             "The moonlight peeking through the gathering storm clouds outside filters through the high factory windows, illuminating the vast space. You spot the outlines of several large canisters - hydrosynth."
             narrator "The failed experiment of artificial water."
@@ -1401,25 +1481,40 @@ label coyote_choice:
     menu:
         "Approach the cannisters.":
             #jump approach_cannisters
-            narrator "A shriek sounds, as a rat skitters out from under the metal lid of the cannister.\n\nOh, well. The abandoned hydrosynth wouldn't have been good by now, anyway."
+            narrator "A shriek sounds, as a rat skitters out from under the metal lid of the cannister."
+
+            narrator "Oh, well. The abandoned hydrosynth wouldn't have been good by now, anyway."
             "You turn to Su'til - the fort is near."
             jump fort_near
         "Investigate the object in the corner.":
             #jump investigate_object
-            scene tape
-            narrator "As you approach the small object, Su'til cocks her head with interest beside you.\n\nYou kneel to find a tape recorder. You press play, and a voice speaks."
+
+            scene radio
+            narrator "As you approach the small object, Su'til cocks her head with interest beside you."
+
+            narrator "You kneel to find a tape recorder. You press play, and a voice speaks."
+            play audio radio
             ali "This is Dr. Ali Rahman, UN Science Division, Neurobiology. We’re seeing more people infected with UV radiation come by the factory. They're showing signs of psychosis, claiming to see themselves in the shadows and hearing sounds at night."
             ali "We suspect this behavior is the result of skin cancer metastasized to the brain."
-            narrator "You can feel Su'til's eyes on you, as some static sounds, disappears.\n\nThe recorder continues to the next and final segment."
+            narrator "You can feel Su'til's eyes on you, as some static sounds, disappears."
+
+            narrator "The recorder continues to the next and final segment."
             ali "Final entry: We are leaving this location for assignment at the solarium. Anyone who finds this...we tried, and we're sorry. Signing off."
 
-            scene factoryinside
+
+            scene angle2
             narrator "You turn to Su'til - the fort is near."
             jump fort_near
         "You spot a ladder in the opposite corner - a possible vantage point to see the fort!":
             #jump ladder_in_corner
+
+            scene fort with fade
             narrator "Determined to mask your nerves, you ascend the ladder. Ignoring your sweaty palms, you don't stop until you reach the top and manage to pry aside the metal opening to the ceiling."
-            "Brisk air with a hint of humidity hits your face, as you look around... \n\nThere, in the navy blue of night, the fort's red radio tower lights blink on and off."
+            "Brisk air with a hint of humidity hits your face, as you look around..."
+
+            "There, in the navy blue of night, the fort's red radio tower lights blink on and off."
+            scene insidefactory
+
             "You climb back down and turn to Su'til - the fort is near."
             jump fort_near
     return
@@ -1427,33 +1522,48 @@ label coyote_choice:
 #1332
 
 label fort_near:
-    show sutil
+    scene perking
     narrator "Su'til perks up with veiled but noticeable interest." 
     sutil "Are there energy cells at your fort?"
     narrator "You wonder what she could need solar cells for before nodding. Memories surface of her basking in the deadly sunrays."
     sutil "Good, we'll head out at first light."
-    narrator "The suit's band at your wrist chirps: 30 percent charge remaining.\n\nSu'til's eyes flit from your wrist back to your face."
+
+    play audio alert
+    narrator "The suit's band at your wrist chirps: 30 percent charge remaining."
+
+    narrator "Su'til's eyes flit from your wrist back to your face."
     sutil "You're also running out of time. I'll wake you before sunrise."
-    narrator "Silence follows her words, as an unease sets in- \n\nSu'til's eyes darken, eyes sweeping your suit."
+    narrator "Silence follows her words, as an unease sets in-"
+
+    narrator "Su'til's eyes darken, eyes sweeping your suit."
     sutil "What other technology are you hiding?"
     narrator "You frown, unsure where she's going with the question. Su'til steps toward you, a spark of challenge in her eye."
     sutil "Are you keeping weapons?"
     narrator "You go to protest, when she grabs your wrist."
     sutil "Turn out your pockets, {i}now{/i}."
-    narrator "Swallowing a mixture of apprehension and indignation at the unexplained charge in the dry air, you do as she says.\n\nSu'til raises her chin." 
+    narrator "Swallowing a mixture of apprehension and indignation at the unexplained charge in the dry air, you do as she says."
+
+    narrator "Su'til raises her chin."
     sutil "That'll do."
     narrator "You go to explain that weapons are necessary in the fight over resources, when a sound comes from outside the factory amid the fading storm."
     #play sound howl
-    hide sutil
-    with dissolve
-    narrator "More silence sets in, as you and Su'til both listen to hear footfalls plodding along outside.\n\nYour eyes meet Su'til's again, as a yowl rings out in the night-"
-    narrator "A cougar. A starved or rogue one, if it's pursuing you in here.\n\nSu'til's head snaps toward the double doors, as something thumps at them from the other side."
+    narrator "More silence sets in, as you and Su'til both listen to hear footfalls plodding along outside."
+
+    play audio wolfhowl
+    narrator "Your eyes meet Su'til's again, as a yowl rings out in the night-"
+    narrator "A cougar. A starved or rogue one, if it's pursuing you in here."
+
+    scene defending2
+
+    narrator "Su'til's head snaps toward the double doors, as something thumps at them from the other side."
     narrator "Striding over, she presses her knee against the metal to hold the door shut." 
     #play sound howl2
 
     menu:
         "Distract the creature by banging on the wall where you stand.":
-            narrator "Spotting a vent, you fall silent to wait as the animal trots over to investigate the noise.\n\nYou barely have time to reel back, when a snout bursts through the rotted vent."
+            narrator "Spotting a vent, you fall silent to wait as the animal trots over to investigate the noise."
+
+            narrator "You barely have time to reel back, when a snout bursts through the rotted vent."
             "You avoid snapping jaws, just in time to-" 
             menu:
                 "Let out a bellow to scare the creature, as you learned at basic.":
@@ -1463,7 +1573,9 @@ label fort_near:
                     narrator "The animal rears back with a yelp, a final yowl fading into the night."
                     jump brows_raised
                 "Do nothing.":
-                    narrator "Frozen in shock, you nearly yelp, as Su'til shoves you to the side and leans up against the wall.\n\nOutside, the cougar's resounding keen fades into the night."
+                    narrator "Frozen in shock, you nearly yelp, as Su'til shoves you to the side and leans up against the wall."
+
+                    narrator "Outside, the cougar's resounding keen fades into the night."
                     jump brows_raised    
         "Keep still.":
             narrator "Your chest floods with relief, as Su'til pushes a fist against the metal, keeping the creature's attention so it avoids discovering the crumbling patch of concrete by your foot."
@@ -1481,32 +1593,29 @@ label fort_near:
 label brows_raised:
     menu:
         "Glance at Su'til, brows raised.":
-            show sutil
+            scene perking
             sutil "Impressive."
             narrator "You can't tell if she's being sarcastic or genuine. She slides down the wall, beckoning you over." 
             sutil "Sit here, I'll keep watch."
             narrator "She talks as if she doesn't need to sleep. But you don't wonder long on the matter, as a fitful sleep claims you."
+
+            scene sleep with fade
+            play audio engine
+
             narrator "Your mind buzzes halfway to alertness, a warmth flooding your veins. Swiveling your head to the right, you see an outline - Su'til? -"
             narrator "Well, at least she's not trying to kill you in your sleep for your suit. She must notice your movement."
+
             sutil "If you don't want to freeze, stay still." 
             narrator "You jerk awake to Su'til's grip on your wrist, as two voices sound from outside - one over static as if through a walky talky, and one from a person right outside the factory entrance, alongside a rumbling engine. He must be from the fort!"
             narrator "You glance at Su'til, gesturing with your eyes that you should do the talking."
 
-            hide sutil
-            scene factory
+            scene zefffactory
             narrator "Carefully exiting the factory, you take in the sight of the uniformed young man with a slight build, wind-blown brown hair partially obscuring his face beneath his visor." 
             narrator "He notices your own suit before his eyes move to Su'til, clearly noticing her lack of protective gear. His gaze drifts back to you."
-            show zeff at truecenter
-            with dissolve
             zeff "You headed to the fort?"
-            hide zeff intro
-            scene wilds
 
             menu:
                 "Yes, I'm Private [player_name].":
-                    scene factory 
-                    show zeff at truecenter
-                    with dissolve
                     narrator "The soldier regards you through the plastic shield of his visor."
                     zeff "Private Zeff. You happen to see McKinley on your trip over? He went out a couple days ago to pick up a new recruit from training."
                     narrator "You think you sense Su'til shift beside you. You wonder if it has something to do with the pistol at Zeff's belt, remembering back to her outburst at thinking you were hiding weapons."
@@ -1516,33 +1625,36 @@ label brows_raised:
                             narrator "Zeff's eyes harden." 
                             zeff "See, you already gave me your name, and I know for a fact you were the one McKinley set out for. You had your chance - why'd you lie to me, soldier?"
                             narrator "You side eye Su'til who must take the subtle signal as an excuse to lunge at Zeff. Not that you're complaining, when the man was clearly reaching for his gun."
+
+                            scene gunfloor
                             "Su'til shoves Zeff head on, sending him reeling backwards, weapon clattering to the ground. He recovers quickly, rolling to retrieve the pistol."
                             "Before Su'til reaches him, he fires three shots toward her - all of which liquify in seconds, molten metal bullets splattering the ground Zeff just manages to avoid."
                             #show melted_bullet at truecenter
                             narrator "Terrifying as this woman is, you could use an ally like her. But you'd also need shelter at the fort. You dive between Zeff and Su'til, waving your arms to placate them both. You notice the jeep the soldier must have arrived in."
-                            hide bullet
                             menu:
+                                
                                 "This is...Su. She can help us at the fort.":
+                                    scene zap
                                     narrator "When Zeff glances again at the fallen weapon, Su'til raises a hand, melting it into a puddle on the ground. She jerks her chin toward the jeep."
+                                    scene gunfloor
+
                                     sutil "Get in. Make one wrong move, and the sun can have you."
                                     jump zeff_drives
                 "This straggler needs help, she's hurt.":
-                    scene factory
-                    show zeff at truecenter
-                    with dissolve
                     narrator "Zeff looks Su'til over." 
                     zeff "Let's get her to the fort. I'm Private Zeff, I take it you're the new recruit. I'm looking for our Sergeant McKinley, lots of people disappearing these days."
                     narrator "You and Su'til keep silent, as Zeff gestures you toward his jeep."
                     jump zeff_drives
                 "You've heard there aren't many left at the fort - maybe you and Su'til can take over." if zeff_deaths < 2:
-                    scene factory
-                    show sutil
-                    with dissolve
-                    narrator "Glancing at Su'til, you nod toward the soldier's gun.\n\nWithout a word, Su'til gives the smallest smile, as the air suddenly burns your nose beneath your visor...\n\nThe heat surges, and you squint on instinct, vision blurring yet not enough to miss Zeff's weapon melt away, taking the rest of his body with it."
-                    hide sutil 
-                    with dissolve
+                    narrator "Glancing at Su'til, you nod toward the soldier's gun."
+
+                    narrator "Without a word, Su'til gives the smallest smile, as the air suddenly burns your nose beneath your visor..."
+
+                    narrator "The heat surges, and you squint on instinct, vision blurring yet not enough to miss Zeff's weapon melt away, taking the rest of his body with it."
                     narrator "The plume of dust settles, revealing a pile of ash where the soldier once stood."
-                    narrator "Heart hammering, you sprint to the jeep to find that his keys must have been incinerated along with the rest of him.\n\nSu'til's eyes fall, as you both realize you're stranded. She might make it, but you won't have a chance."
+                    narrator "Heart hammering, you sprint to the jeep to find that his keys must have been incinerated along with the rest of him."
+
+                    narrator "Su'til's eyes fall, as you both realize you're stranded. She might make it, but you won't have a chance."
                     narrator "Game over."
                     $ zeff_deaths += 1
                     menu:
@@ -1556,27 +1668,30 @@ label brows_raised:
 
 #Letting Zeff take the driver's seat, you keep an eye on him in shotgun while Su'til flanks you both.
 label zeff_drives:
-    scene fort
+    scene fortarrival with fade
     narrator "The fort is...smaller than you'd expected. Zeff pulls the jeep up to a metal post with a device you figure to be a UV radiometer."
     narrator "Piling out of the jeep, you glance at Su'til, curious over how her suit might affect the detector. Zeff buzzes in, gesturing for you and Su'til to follow."
-    scene fortinside
+
+    scene williamsmeet with fade
     narrator "Once inside, you glance down at your wrist to find the charge tracker is dark - the suit has finally died. You lift your visor to look around. The space is large enough to house multiple long tables and walls lined with weapons that catch Su'til's eye immediately."
     narrator "Just as you think to warn her to watch her step, a tall woman - the Lieutenant Williams you've been assigned to, no doubt - emerges from the back corridor." 
-    show zeffwilliams at truecenter 
     zeff "Lieutenant, No sign of Sgt. McKinley."
     narrator "Williams gives a curt nod, then looks straight at you."
     williams "You the new recruit, Private [player_name]?"
     narrator "Zeff replies before you can."
 
     zeff "Found them both in the Wilds, Lieutenant. No UV detected."
-    narrator "You note the tremor in his voice, unsure whether it's for Williams, Su'til or both. You give your name.\n\nWilliams approaches to inspect Su'til's scars."
+    narrator "You note the tremor in his voice, unsure whether it's for Williams, Su'til or both. You give your name."
+
+    narrator "Williams approaches to inspect Su'til's scars."
     williams "Looks like the sun's got you real good without a band. Is there an armor-styled alternative I haven't heard about?"
     narrator "Su'til doesn't drop Williams' gaze."
     sutil "The sun isn't the only problem around here."
     narrator "Williams turns back to you." 
     williams "Look, either of you two wanna stay here, we're goin' on a little scouting trip for McKinley. I don't like what I find out there, it's back to the Wilds with you. At best."
+
+    scene zeffwilliamswoods with fade
     narrator "A ways past the tree line to the local woods - having backtracked the entire distance you, Su'til, and Zeff covered in the jeep - you fall into step beside Su'til."
-    scene forest
     menu:
         "So, you mentioned being from the emu? Where's that?":
 
@@ -1584,21 +1699,31 @@ label zeff_drives:
     narrator "Perhaps not a bad thing. You still have to wonder how she seems to thrive off what has destroyed most of humanity. Unless she's from...{i}very{/i} far away."
     narrator "Not for the first time, you ponder the trace of an accent that touches some of her words."
     narrator "Williams and Zeff halt ahead of you, as you recognize what must be the bottom of the canyon where McKinley fell..."
+
+    scene mcdead with fade 
     narrator "And there's his boots, clear as day. Williams walks up to examine the rest of him and sets her jaw, a cloud of flies buzzing all around you."
     narrator "Joining the group around him, your gut falls at the grisly mess of gnawed flesh and scattered patches of exposed bone." 
     narrator "Eyeless sockets stare up into nothing above a crooked jawbone. Perhaps worst of all is the putrid odor that plagues the humid morning air."
-    show zeffwilliams at truecenter
     zeff "Animal attack?" 
     narrator "Williams glances over at you and Su'til." 
     williams "Lucky for you two, neither of you look like cannibals. Let's clear out, the sun's still coming strong through the trees."
+
+    scene forest 
+
     narrator "With a lingering look at McKinley's corpse, Su'til turns to follow Zeff and Williams."
 
-    hide zeffwilliams
-    narrator "Before you move to join them, your eye catches a symbol painted on the surface of a rock right off the worn path...\n\nAn hourglass of sorts."
-    scene variola    
+    
+    narrator "Before you move to join them, your eye catches a symbol painted on the surface of a rock right off the worn path..."
+    scene hourglass
+
+    narrator "An hourglass of sorts."
     narrator "No sooner do you tear your eyes away that Su'til strides up beside you, her voice low."
     sutil "I've seen that symbol before."
-    narrator "No sooner has she spoken that she stumbles. The moment you go to grab her arm, she whirls around as if to strike you.\n\nYou back up. Before you can reply, she takes off ahead of you."
+    narrator "No sooner has she spoken that she stumbles. The moment you go to grab her arm, she whirls around as if to strike you."
+
+    narrator "You back up. Before you can reply, she takes off ahead of you."
+
+    scene zeffnight with fade
     narrator "She must have exerted herself in that standoff with Zeff. Back at the fort, Williams wastes no time turning to you and Su'til, as Zeff pretends to polish a pistol toward the back corridor."
     williams "Guess we need to decide what to do with you, then."
     narrator "You have to wonder if she means you or Su'til or both."
@@ -1606,13 +1731,13 @@ label zeff_drives:
     sutil "My name's Su'til."
     williams "You look like you've had a rough time out there. How long've you been a straggler?"
     sutil "I don't straggle. Show me back to your tent."
-    scene fortinside
-    show zeffwilliamssutil
     williams "Right. Okay, Su, you and [player_name] are gonna earn your keep around this {i}fort{/i}. I've still got my eye on you. First mission - the local solarium."
     zeff "Really, Lieutenant? I thought we were staying out of there since Olga's last warning."
     williams "Tired of finding these bodies lying around. They're up to something."
     narrator "Williams' dark eyes meet yours."
     williams "You'll pose as stragglers, to see what's happening to the real ones-"
+
+    scene punch with fade 
     narrator "A crash sounds, and you turn to see Su'til backing Zeff up against the wall."
     sutil "He tried to sneak up on me."
     zeff "Lieutenant...you haven't seen what she can-"
@@ -1625,11 +1750,12 @@ label zeff_drives:
     zeff "What...what are you doing?"
     narrator "You recognize that relaxed expression on his face from your own experience of that strange warmth back at the warehouse."
     sutil "Conduction. The heat relaxes the muscles to speed up healing."
+
+    scene zeffnight with fade
     williams "We could send you in alone at this rate, Su."
 
     menu:
         "I want to go along.":
-            show zeffwilliamssutil at truecenter
             narrator "Williams turns back to Su'til."
             williams "You got an issue with weapons? Good thing you'll be unarmed for this little mission."
             sutil "I don't need a weapon."
@@ -1648,22 +1774,23 @@ label zeff_drives:
     sutil "...Fine."
     narrator "Williams strides over, opening the closet door. Su'til enters."
     williams "All night."
-    hide zeffwilliamssutil
 
-    show williamssutil at truecenter
     narrator "Before Su'til can protest, Williams shuts and locks the door from the outside. You think you hear several bangs from the other side before the room falls silent."
     narrator "Zeff leaves down the hall, as Williams turns to you."
     williams "If she lasts the night, you two head out to the solarium first thing."
-    hide williamssutil
 
 
-    narrator "More fitful slumber...shattered by a thundering crash.\n\nYou stir awake, sitting upright on the small cot, a cold sweat on your nape."
+    scene fortatnight with fade
+    narrator "More fitful slumber...shattered by a thundering crash."
+
+    narrator "You stir awake, sitting upright on the small cot, a cold sweat on your nape."
     narrator "There, in the approaching dawn, you see the outline of Su'til, the space illuminated only by the fading light of the diamond shape marked by the gems on her face."
     narrator "The moment your eyes lock, you lie down again, hoping she won't move to hurt you."
+
+    scene melteddoor
     narrator "When you wake again in the morning, the metal storage door lies as a drying, glinting puddle reflecting the morning sun."
     narrator "A voice startles you, and you whip around to find Su'til standing by the fort entrance."
 
-    show sutil at truecenter
     sutil "Don't look so disappointed." 
     narrator "The hint of a smile plays at her lips despite the beads of sweat you think you see on her forehead amidst the decorated scars."
     sutil "Let's see this solarium."
@@ -1676,25 +1803,26 @@ label zeff_drives:
             narrator "Su'til stiffens on her way out the door."
             sutil "No...though, the dark space was a challenge. Yet, the heat sharing at night turned out not to be necessary after all."
             narrator "For just a moment, your mind wanders back to her touch the night you met. That strange tingling warmth..."
-    scene solarium
-    show guard
+
+
+    scene guard1 with fade
     narrator "As the solarium perimeter comes into view, you eye the two guards, as Su'til stoops to rub a solid layer of dirt over the bejewelled scars on her cheeks. Suddenly, your strategic lack of a weapon weighs on you. At your side, Su'til steels herself."
     narrator "By some stroke of luck, neither of you has to speak, as one of the guards - a lithe woman - makes a sound of surprise at the sight of Su'til's scars followed by a curious once-over of her uniform. The guard's expression turns to one of pity."
     narrator "Before you can say anything, she steps forward to pat you both down. To your shock, Su'til plays along, letting herself be searched."
     guard "Clean." 
     narrator "The guard states, before eyeing your unblemished skin through your visor. You avert your gaze, focusing on the stark white inverted semi-circle on the chest of the guard's black uniform."
     sutil "This one's with me, they...they {i}help{/i} me in my illness."
-    hide guard
     narrator "Those final words seem to leave a bitter taste on her tongue. In what could be a blink of the guard's wrist band to momentarily disrupt the blue plasma field shielding the solarium, she urges you onward."
-    scene doubledoors
     narrator "You pass through the gates and across an unassuming dirt path into a massive set of double doors that dwarf even those of the factory where you took shelter with Su'til."
-
-    scene solariuminside
+    scene labcoat with fade
     narrator "Ornate interior designs composed of violet, gold, jade and all manner of colors adorn the corridor before you. The guard leads you through what must be three hallways lined with velvet carpet and riddled with rooms where"
 
 
     narrator "People dine, play various sports and even embrace in what looks like one of the swimming pools that used to be everywhere before everything fell apart..."
     narrator "Beside you, Su'til eyes a woman in a labcoat who steps into an elevator with transparent walls, swiping a badge to ascend,"
+
+    scene corridor2 with fade 
+    play audio tran3
     narrator "You reach a stairwell where the guard from the entrance passes you off to another in a wordless yet seemingly routine exchange."
     narrator "The new guard glances from you to Su'til, then proceeds to stroke her thumbs over the gems and scarred flesh of Su'til's cheeks."
     narrator "Su'til flinches before submitting, shoulder stiff. Apparently satisfied that the marks are real, the guard steps back." 
@@ -1702,19 +1830,24 @@ label zeff_drives:
     narrator "Do people really pose as ill to try and get sympathy from the rich? A shove to your back, and when the door closes behind you, all sound from the corridor vanishes."
     narrator "The ensuing silence closes in like a wet cloth over your ears, as your eyes adjust to the dim light."
     narrator "When the guard arrives, Su'til makes no move to resist, clearly curious. As you both are led down the corridor and up a short stairwell, you glance around at the buzzing fluorescent lights lining both sides of the ceiling above."
+    stop music
+
+
+    play audio crowd
     narrator "The cheering and pounding reaches your ears before the guard opens the door at the top of the stairs. When she shoves you and Su'til out into what must be the pit, the crowd's cries are deafening."
-    scene sutilman
+    play music breathe
+    scene bigman
     narrator "A whistle sounds, and the shouts dim to a murmur. You watch, as the two massive doors across the way open. A single burly man steps out. Though dressed in rags and covered in lesions, his muscles ripple as his fists clench at his sides. At the whistle's second shriek, the man bounds across the concrete."
     narrator "He lunges for Su'til first. She easily side-steps him, sending him stumbling. After righting himself, he rounds on Su'til with a roar, blood-shot eyes wide."
-    scene straggler
-    scene sutilman
     menu:
         "Shove him from behind.":
+            scene dead2
             narrator "As the fighter falls forward, Su'til takes the opportunity to punch a hole through his gut. The crowd cheers, as you look on at the blood dripping from Su'til's knuckles once she's wrenched her fist free."
+            play audio crowd
+            scene pointing with fade 
             narrator "Winner! Take 'em back for another show tomorrow!"
             narrator "Then, Su'til turns, and the stadium lights illuminate her blood-spattered face and fist as her victim's body collapses with a thud. A current rustles through the hushed crowd, and then-"
 
-            scene whiteguards
             narrator "Bullets - so many bullets from a multitude of AK-47s fire at once as the solarium guards descend toward you. A flurry strikes Su'til as she moves in front of you, which she takes, unfazed."
             narrator "The guards expand their target range as she moves, and Su'til leaps in front of you, shielding you from the onslaught that melts in real time before any can reach you. The dome of liquid metal falls back onto the swarm of guards, crumbling in a giant statue of ash."
             narrator "Several of the guards scramble down to the pit to apprehend you and Su'til. She doesn't miss a beat, using the edge of her outstretched hand to slice through all of their throats at once."
@@ -1731,12 +1864,12 @@ return
 
 #A guard drags you out of the ring
 label guard_drags:
-    hide fightingpit
     menu:
         "A guard drags you out of the ring.":
-            scene stragglers
+            stop music 
+            play music bg2
+            scene stragglers with fade
             narrator "Before you have a chance to look for Su'til, two figures come into focus - gaunt, middle-aged men. The grimy light fixtures in the low ceiling overhead reveal lesions streaked over a cheekbone here, a forehead there, accentuated by sunken, hollow eyes."
-            scene stragglers
             narrator "When one pair of those eyes meets yours, a shiver runs through your body. The other straggler speaks without breaking his straight ahead stare, more parched croak than voice."
             straggler "Fresh meat." 
             narrator "Su'til purses her lips."
@@ -1746,37 +1879,51 @@ label guard_drags:
             narrator "A fighting pit? Is this why no straggler given refuge by the solarium was ever heard from again?"
             sutil "They make people here fight for entertainment?"
             straggler "No matter how sick you are. They've got plenty o' uppers for encouragement."
-            scene guardprison
+            stop music
+            play music breathe
             narrator "You've no idea how much time has even passed, when the door opens. Before you can react, Su'til takes the next step for you both."
             narrator "You narrowly dodge her elbow as she strides toward the incoming guard."
-            scene floorguard
             narrator "In a blur, Su'til disarms the guard, striking him upside the head with his own weapon. His body barely strikes the floor before she turns to the three of you, dropping the weapon."
             sutil "We're leaving."
             narrator "The stronger looking straggler hoists up his friend."
             straggler "You're not gonna take that gun?" 
             narrator "You decide not to snatch up the gun. Not when your...companion can apparently melt them without so much as a touch."
 
-            scene corridor
             narrator "Beckoning to the stragglers who duck out of the cramped space alongside you, you all bound after Su'til down the dark corridor."
-            narrator "You blink - light up ahead! Nearly there-\n\nSu'til bursts through the door where you find yourselves on some kind of a...rooftop?\n\nBut how? You'd been underground, you're sure of it..."
+            narrator "You blink - light up ahead! Nearly there-"
+            scene chute with fade
+            narrator "Su'til bursts through the door where you find yourselves on some kind of a...rooftop?"
+
+            narrator "But how? You'd been underground, you're sure of it..."
             straggler "Garbage chute." 
-            narrator "The stronger-looking straggler looks toward the mouth of some kind of tunnel leading off the ledge not far from where Su'til stands.\n\n Heights or not...it's now or never. When another guard appears from behind you, you don't give yourself time to think."
+            narrator "The stronger-looking straggler looks toward the mouth of some kind of tunnel leading off the ledge not far from where Su'til stands."
+            scene stguard
+            narrator "Heights or not...it's now or never. When another guard appears from behind you, you don't give yourself time to think."
             menu:
                 "Shove the two stragglers toward Su'til, shouting to distract the guard.":
-                    narrator "Just as the guard goes to lift her weapon, the weaker straggler dives into your path. The bullet pierces his neck with a small spray of crimson, and he collapses at your feet.\n\nYou idly wonder if he might have had a death wish..."
+                    narrator "Just as the guard goes to lift her weapon, the weaker straggler dives into your path. The bullet pierces his neck with a small spray of crimson, and he collapses at your feet."
+
+                    narrator "You idly wonder if he might have had a death wish..."
+
+                    scene chute2 with fade
                     narrator "A wail sounds from his friend behind you, as Su'til grabs your hand, pulling you toward the small abyss at the rooftop's edge."
                     narrator "No sooner does a gunshot sound that darkness swallows you once again."
                     jump stomach_plummets
                 "Dive for the chute sitting just below the buzzing blue plasma field.":
+
+                    scene chute2 with fade
                     narrator "Your belly falls short on a hump at the chute's opening, wrenching a grunt from your chest. The grunt turns into a shout, as something - likely Su'til - shoves you from behind, sending you hurtling over the bump."
                     jump stomach_plummets
                 "Run at the guard to snag her weapon.":
                     #Solarium rooftop battle
 
-                    scene jailsiren
                     narrator "Managing to catch the guard by surprise, you stop short at avoiding her swift block of your fist. Two shouts sound behind you. The stragglers must have fallen - or been pushed - down the chute."
                     narrator "No sooner does a fist connect with your jaw, that you're knocked out of the way by a heat blast."
-                    narrator "Pivoting to glance back at the guard despite your aching spine, you find yourself nose-to-nose with a charred corpse.\n\nFor the first time, you're happy to have been knocked down."
+                    narrator "Pivoting to glance back at the guard despite your aching spine, you find yourself nose-to-nose with a charred corpse."
+
+                    narrator "For the first time, you're happy to have been knocked down."
+
+                    scene chute2 with fade
                     narrator "Wasting no time, Su'til wrenches you up by your arm, as a siren sounds from all around. Your belly has time for exactly one flip before she pushes you head on into the garbage chute."
                     jump stomach_plummets
     return
@@ -1785,19 +1932,26 @@ label guard_drags:
 label stomach_plummets:
     menu:
         "Your stomach plummets with you into nothingness.":
-
-            scene wilds
+            scene chute3 with fade
             narrator "Glancing around, you sigh in relief at the sight of the vast Wilds surrounding you - the chute led outside the solarium grounds."
-            narrator "Checking to ensure the stragglers take off before you, you catch up to Su'til, bounding as fast as you can toward the fort.\n\nHeart hammering, you don't stop until Williams comes out to meet you."
-    show williamsclose
+            narrator "Checking to ensure the stragglers take off before you, you catch up to Su'til, bounding as fast as you can toward the fort."
+            
+            scene fortdaytime with fade
+            narrator "Heart hammering, you don't stop until Williams comes out to meet you."
     williams "All stragglers to the shelter out back!"
 
-    hide williams
-    scene fortinside
     narrator "At that, you and Su'til enter the fort where Williams shouts another order."
-    show zeffwilliamssutil
+
+    scene backtofort with fade
     williams "You two, out back under the dumpster. Su's scars stand out, you'll need to hide till the convoys pass."
-    narrator "Sure enough, the minute you pull yourself beneath the dumpster beside an oddly still Su'til, the vehicles pull up out front of the fort.\n\nBoots stomp all around the back and sides of the small building - and then retreat along with the convoy moments later.\n\nOnce back in the f, you waste no time."
+    narrator "Sure enough, the minute you pull yourself beneath the dumpster beside an oddly still Su'til, the vehicles pull up out front of the fort."
+
+    narrator "Boots stomp all around the back and sides of the small building - and then retreat along with the convoy moments later."
+
+    stop music
+    play music ambient
+    scene zeffwilliams with fade
+    narrator "Once back in the fort, you waste no time."
     sutil "Lieutenant, they're making the stragglers fight each other at the solarium."
     narrator "Williams pauses a moment before shaking her head in disappointment."
     williams "Olga assured me she put a stop to that."
@@ -1806,42 +1960,52 @@ label stomach_plummets:
     sutil "You know this person."
     narrator "Before Williams can respond, more footsteps sound outside."
     zeff "I followed the newbies and found...scraps of skin and organs. The solarium is harvesting straggler skin."
+
+    scene olgaarrival with fade
+
     narrator "Williams curses, as the fort's entrance doors are forced open. In walk two more guards, flanked by a tall woman with dark hair tied back into a tight bun and sharp grey eyes. That gaze settles on you and then roves to Su'til." 
     narrator "Zeff mutters from beside you."
+    scene olgaenters with fade
     zeff "Speak of the devil..."
-    hide zeffwilliamssutil
-    show Olga 
     williams "Olga."
     Olga "Tasha." 
     narrator "Olga regards the Lieutenant."
     Olga "It's a wonder your radiometer isn't sounding off the charts, given the UV radiation residue these two escapees left behind."
 
-    hide Olga
-    show zeffwilliamssutil
     williams "Dr. Olga, we heard the siren and hope everything is all right at the solarium. But the convoy has been by already."
     narrator "Olga cocks her head, fingers rising to stroke the jewel-like scars on Su'til's cheek."
 
-    hide zeffwilliamssutil
 
-    show Olga
     Olga "Not minutes after the escape, a fire started outside our science wing. Lieutenant, you are the only one with the solarium blueprints-"
 
-    hide Olga
-    narrator "Evidently tired of her face being touched, Su'til slaps away the other woman's hand.\n\nAs the guards step forward, you recognize this as a chance to prove yourself - both to your new post that you're capable of duty and to you yourself that you can survive this ruthless world however needed."
+    narrator "Evidently tired of her face being touched, Su'til slaps away the other woman's hand."
 
-    show sutil
+    narrator "As the guards step forward, you recognize this as a chance to prove yourself - both to your new post that you're capable of duty and to you yourself that you can survive this ruthless world however needed."
+
     sutil "We found straggler remains outside the perimeter." 
 
-    hide sutil
 
 
-    narrator "You make sure to avoid Zeff's piercing gaze, as a thick pause sets in.\n\nOlga jerks her chin in your direction, and the guards pounce.\n\nThis time in the darkness is a trifle more nauseating."
+    narrator "You make sure to avoid Zeff's piercing gaze, as a thick pause sets in."
 
-    scene greenhouse with fade 
-    show Olga
+    narrator "Olga jerks her chin in your direction, and the guards pounce."
+
+    narrator "This time in the darkness is a trifle more nauseating."
+
+    scene black with fade
+
+    play audio tweeting
+
+
     narrator "You are jostled into a vehicle, forced out again, and walked down what likely promises to be yet another cold corridor. Only moments before the darkness is lifted once again does the humid air fill your nose."
+
+    scene greenhouse with fade
+
     narrator "Next, your ears pick up on the tweeting of birds - it's a greenhouse."
-    narrator "You focus, staring into Olga's face before you. The guards stand on either side of her. As if you could do much with your wrists still cuffed.\n\nOlga asks, taking a sip of wine."
+
+    narrator "You focus, staring into Olga's face before you. The guards stand on either side of her. As if you could do much with your wrists still cuffed."
+
+    narrator "Olga asks, taking a sip of wine."
     Olga "Do you like the view?" 
 
     narrator "You duck on instinct as a particularly massive bird flies overhead, colorful wingspan accompanying a shrill squawk. Overhead, the usually deadly sunlight pours in through the glass ceiling above the dense foliage."
@@ -1852,7 +2016,9 @@ label stomach_plummets:
     Olga "I don't blame you for running away, obviously, you couldn't have started the fire yourself so soon, but...your fort has resources. Your lieutenant and I haven't seen eye-to-eye on everything."
     narrator "You meet her gaze. She notes your judgment."
     Olga "We use only the skin of dead people. We mean to let people walk in the sun again without visors and sunbands. Once again, the dying lose their minds before we take them for a show during their final moments."
-    narrator "The two stragglers you met earlier that day had sure seemed lucid enough...\n\nYou force yourself to focus. She seems to be toying with you, or you would likely already be dead. She needs to know the fort can handle itself."
+    narrator "The two stragglers you met earlier that day had sure seemed lucid enough..."
+
+    narrator "You force yourself to focus. She seems to be toying with you, or you would likely already be dead. She needs to know the fort can handle itself."
     narrator "You notice that some leaves sparkle with dew, while others look dry."
 
     label plant_puzzle:
@@ -1860,22 +2026,20 @@ label stomach_plummets:
             menu:
                 "It could be a lack of water." if not plant1_guess:
 
-                    show Olga
                     narrator "Olga shakes her head."
                     Olga "The sprinklers come on three times a day from multiple angles."
                     $ plant1_guess = True
                     jump plant_puzzle
                 "Maybe something's eating them." if not plant2_guess: 
-                    show Olga       
                     narrator "Olga purses her lips." 
                     Olga "This isn't the Wilds. There are no animals here."
                     $ plant2_guess = True
                     jump plant_puzzle
                 "You notice two of the colorful birds are resting on the branch above the plant.":
-                    narrator "Another loud squawk tears you from your thoughts. You glance up to see another massive bird land on the thick branches shielding the dying plant. Your eyes trail over the bird's shadow which sweeps over the dying vines directly below. You nod toward the birds blocking out the sunlight."
+                    narrator "Another loud squawk tears you from your thoughts. You glance up to see another massive bird land on the thick branches shielding the dying plant. "
+                    narrator "Your eyes trail over the bird's shadow which sweeps over the dying vines directly below. You nod toward the birds blocking out the sunlight."
                     jump think_again
                 "Maybe that plant's getting fried by the sun." if not plant4_guess:
-                    show Olga
                     Olga "The ceilings are triple-paned, UV-resistant silicone. Nothing but the bare minimum is getting through."
                     $ plant4_guess = True
                     jump plant_puzzle
@@ -1887,42 +2051,95 @@ return
 
 
 label think_again:
-    Olga "Astute observation. I'll let you off this once. But kindly end the chivalry over those outside the solarium. My ancestors survived Chernobyl. If they could do it, people here have no excuse. They've made their bed. The poor have the advantage of presumed moral superiority to lord over the rest of us - I recommend not falling for their weaponization of that. If only your Lieutenant could also look forward."
-    narrator "Before you can come up with a retort, the shroud engulfs you once again. More jostling, and another thud. You wonder how many bruises have, as the jeep engine fades into the distance. Blinking up into the clear night sky, you let the silence creep in, limbs laden with exhaustion."
-    
-    scene fort
-    narrator "Mustering the strength to stand and enter the fort before someone comes out looking for you, you freeze at a rustling at the nearby tree line behind you."
-    show roamer at truecenter
-    narrator "Turning slowly, you blink to see a shape emerge from the shadows of the trees in the waning dusk. A slight figure, no taller than a young girl. But those eyes... Black pools like obsidian reflected off the murky starlight, unblinking straight at you. That head quirks to the side, animal but not. No hair, not even on its head, clothes barely more than tatters."
-    narrator "When you move to step backward, a strange film slides over that unnerving face, leaving you staring at a crude reflective surface. You blink back at your own face. A defense mechanism to throw you off guard? Or perhaps a hunting mechanism... Su'til announces her presence with the hiss of the Fort doors opening"
-    narrator "behind you. Relief floods you like a broken dam.  Standing your ground, you resolve not to quiver where Su'til can see. Drawing the stolen jerky from inside your vest, 
-you toss it to the creature before you. The ration that McKinley almost killed you over. Releasing a quiet croak, the creature catches the morsel with a swift grasp. By the time Su'til steps up beside you, the stranger has turned and sprinted back into the woods."
-    hide roamer
+    Olga "Astute observation. I'll let you off this once. But kindly end the chivalry over those outside the solarium."
+    Olga "My ancestors survived Chernobyl. If they could do it, people here have no excuse."
+    Olga "They've made their bed. The poor have the advantage of presumed moral superiority to lord over the rest of us - I recommend not falling for their weaponization of that. If only your Lieutenant could also look forward."
 
-    show zeffwilliamssutil
+    stop music 
+    play music breathe
+    play audio engine
+
+    scene black with fade
+    narrator "Before you can come up with a retort, the shroud engulfs you once again. More jostling, and another thud."
+
+    stop music 
+    stop audio
+
+    play music night
+    scene fortnight
+    "You wonder how many bruises have, as the jeep engine fades into the distance. Blinking up into the clear night sky, you let the silence creep in, limbs laden with exhaustion."
+    
+
+    narrator "Mustering the strength to stand and enter the fort before someone comes out looking for you, you freeze at a rustling at the nearby tree line behind you."
+
+    scene strange with fade
+
+    narrator "Turning slowly, you blink to see a shape emerge from the shadows of the trees in the waning dusk. A slight figure, no taller than a young girl. But those eyes... "
+    "Black pools like obsidian reflected off the murky starlight, unblinking straight at you. That head quirks to the side, animal but not. No hair, not even on its head, clothes barely more than tatters."
+    narrator "When you move to step backward, a strange film slides over that unnerving face, leaving you staring at a crude reflective surface."
+    "You blink back at your own face. A defense mechanism to throw you off guard? Or perhaps a hunting mechanism... Su'til announces her presence with the hiss of the Fort doors opening"
+    narrator "behind you. Relief floods you like a broken dam."
+    "Standing your ground, you resolve not to quiver where Su'til can see. Drawing the stolen jerky from inside your vest, 
+    you toss it to the creature before you. "
+
+    scene sutilnight with fade
+    "The ration that McKinley almost killed you over. Releasing a quiet croak, the creature catches the morsel with a swift grasp. By the time Su'til steps up beside you, the stranger has turned and sprinted back into the woods."
+
     sutil "The Ite are here."
+
+
     narrator "You remember the carving on the tree trunk you spotted near McKinley's body. Did they...eat people?"
-    sutil "The oldest living things in this world. They came from the earth's first rocks and basically created the placenta in mammals for safer propagation of the species. They also created the world plague smallpox that drove my people off the planet, because we refused to procreate for their harvest...or at least that's what the Bridge always said."
+    sutil "The oldest living things in this world. They came from the earth's first rocks and basically created the placenta in mammals for safer propagation of the species."
+    "They also created the world plague smallpox that drove my people off the planet, because we refused to procreate for their harvest...or at least that's what the Bridge always said."
     narrator "Su'til notices your confusion."
     sutil "My people are the Til'amaru, the Survivors of the Flood. You might know us as Sumerians. After the glaciers melted, the Ite didn't like us spreading across the globe."
-    narrator "You think back to the abandoned factory, and how much your own people's technology failed your generation...right up to throwing poor folks out into the wild to be devoured by those creatures out there. Once back at the Fort, you wait until Williams and Zeff are asleep and Su'til disappears down the back corridor toward the cell chamber."
-    narrator "You sit at the computer and run your first internet search as far back as you can remember. Smallpox... Alongside the essays of text on the history of the disease, an image appears - a microscopic view of the virus itself...an hourglass shape just like the symbol etched onto the rock. Williams approaches from behind you."
-    show variola at truecenter
-    williams "It's an important symbol to the Indigenous Lakota people. These things must have lived among them or been influenced by them in some way. This is a lot bigger than any of us expected. But we still have to focus on the mission here. I don't trust Olga or anyone at the solarium with stragglers anymore. We have to expand the shelter to keep as many away as possible."
+    narrator "You think back to the abandoned factory, and how much your own people's technology failed your generation...right up to throwing poor folks out into the wild to be devoured by those creatures out there."
+
+    play audio footsteps
+    scene computer with fade
+    narrator "Once back at the Fort, you wait until Williams and Zeff are asleep."
+
+    narrator "Su'til disappears down the back corridor toward the cell chamber."
+
+    play audio typing
+    narrator "You sit at the computer and run your first internet search as far back as you can remember. Smallpox..."
+    narrator "Alongside the essays of text on the history of the disease, an image appears - a microscopic view of the virus itself...an hourglass shape just like the symbol etched onto the rock."
+
+    scene zws with fade
+
+
+    play music bg1
+    narrator "Williams approaches from behind you."
+    williams "It's an important symbol to the Indigenous Lakota people. These things must have lived among them or been influenced by them in some way. This is a lot bigger than any of us expected."
+    williams "But we still have to focus on the mission here. I don't trust Olga or anyone at the solarium with stragglers anymore."
+    williams "We have to expand the shelter to keep as many away as possible."
     narrator "You have to wonder how long Olga's respect over your solving her greenhouse issue will actually keep her off the fort's back. But surely, Su'til's people can help supply tech. She seems adamant on protecting the fort, after all. Zeff walks up."
     zeff "We need to take turns surveying the solarium with the plane. We need to be ready if they decide to swarm us."
-    hide variola
     williams "Zeff'll get both you and Su trained up. Starting in the morning."
     zeff "The girl, too?" 
     williams "You heard me. We need all hands on deck for this."
 
-    scene planetraining
+
+    scene practice with fade
+    stop music
+
+    play music night
+
+    play audio plane
     narrator "The next morning, Su'til fumes at your side as much as can be expected, as you both watch Zeff practice basic maneuvers. He steps out of the prop plane after about the dozenth landing." 
     zeff "We won't need to fly high. Just over the trees."
-    narrator "Zeff scarcely finishes speaking before Su'til bounds forward to take his place in the pilot's seat. She jerks her head at you to join.  mYou do as she says, willing your jaw to unclench at how frayed your nerves are. Perhaps not for the first time, you wonder just where her people have been hiding...if it's been off planet, and she actually has space craft flight training, this can't be too hard, right?"
+    narrator "Zeff scarcely finishes speaking before Su'til bounds forward to take his place in the pilot's seat. She jerks her head at you to join."
+    "You do as she says, willing your jaw to unclench at how frayed your nerves are. "
+    "Perhaps not for the first time, you wonder just where her people have been hiding...if it's been off planet, and she actually has space craft flight training, this can't be too hard, right?"
+    play audio plane2
+    play audio plane3
     narrator "The engine revs to full capacity once more, as Su'til traces her fingers over the buttons and gear shift between you." 
     sutil "Let me know if I make a mistake."
-    narrator "That might just be the humblest statement you've heard from her yet. Then, the plane lurches into the sky, and your stomach drops. Only when you level out again, do you suck the air back into your lungs. If Su'til notices, she thankfully doesn't comment. After a few moments, you chance a glance out the window beside you. You're flying - or more like gliding - smoothly enough. Not too fast even. The drone of the engine might lull you to sleep in any other situation- A dip sends your heart pounding once again."
+    narrator "That might just be the humblest statement you've heard from her yet. Then, the plane lurches into the sky, and your stomach drops. "
+    "Only when you level out again, do you suck the air back into your lungs. If Su'til notices, she thankfully doesn't comment. After a few moments, you chance a glance out the window beside you. "
+
+    scene planemoving with fade
+    "You're flying - or more like gliding - smoothly enough. Not too fast even. The drone of the engine might lull you to sleep in any other situation- A dip sends your heart pounding once again."
     
     menu:
         "Grab Su'til's hand on the gear shift.":
@@ -1936,9 +2153,9 @@ you toss it to the creature before you. The ration that McKinley almost killed y
         "Fight the urge to intervene.":
             narrator "Su'til clears her throat, knuckles turning white around the gear shift, as she levels out the aircraft."
 
-    scene solariumfaraway 
 
-    narrator "Once disembarked, you find yourselves on a knoll shrouded in dead weeds. Likely once lush green. Not far below, the solarium lights twinkle, amber amidst the winding silver spires of the complex's base. Like a toy model city glinting in the sunset. They used to sell those back before everything went topside. They probably give them away for free at the solarium. Su'til sits down, and you join her."
+    narrator "Once disembarked, you find yourselves on a knoll shrouded in dead weeds. Likely once lush green. Not far below, the solarium lights twinkle, amber amidst the winding silver spires of the complex's base."
+    "Like a toy model city glinting in the sunset. They used to sell those back before everything went topside. They probably give them away for free at the solarium. Su'til sits down, and you join her."
     sutil "The sun's so warm here. So close. Back home, even the stars were an illusion to keep us from wondering about the Void until we were ready to face it. During my free time from training, I started painting how I thought the Void would look...when the stars were real."
     narrator "She reaches out, flexing her fingers, silhouetted against a sky like fire."
   
@@ -1950,7 +2167,6 @@ you toss it to the creature before you. The ration that McKinley almost killed y
             narrator "Su'til seems to notice your surprise, a playful glint in her dark eyes."
             sutil "Did you think the suit was a power source?"
 
-            scene solariumfaraway
             
             menu:
                 "You nod, no longer caring to deny your intrigue at this whole situation.":
@@ -1998,23 +2214,19 @@ return
 label return_to_plane:
     menu:
         "Return to the plane.":
-            scene fortnight
             narrator "The moment you step out from the plane, the brisk night air hits your face. You almost long for the soaking humidity, setting your jaw to keep your teeth from chattering as you walk with Su'til toward the illuminated fort. Just then, the hairs on your nape stand on end. You are being watched. Turning toward the tree line, you think you see a shape - humanoid, perhaps."
             narrator "Or...on all fours? Maybe both. Just as a breeze picks up and you're about to book it, the shape emerges from the woods- A mountain lion."
     narrator "You stay rooted to the spot, sure you can make it inside no problem, and yet...the beast trots forward a few feet beyond the tree line, amber gaze catching the moonlight. You lock eyes, just as a shrill keen pierces the air from out in the forest - like a bell rung at the highest pitch possible. The cougar turns and sprints back into the shadows as quick as it appeared."
     narrator "Turning to leave before anything attacks, you pause at another shape that appears to your right - definitely humanoid. Smaller than Su'til. From this distance, their skin almost looks...made of rock face. Without sparing another thought, you turn and high-tail it back to the fort."
 
-    scene fortinside
     narrator "When you shut the fort front doors behind you, you look around to see Williams sleeping on a cot near the back. Su'til has presumably made for the solar cell room. Zeff steps out of the shadows by the back corridor."
     
-    show zeffwilliamssutil
 
     zeff "Was she at training with you?"
     narrator "You nod. Silence sets in."
     zeff "Why'd you join the fort?"
     menu:      
         "Better than being a straggler.":
-            show zeffwilliamssutil
             zeff "We're running out of supplies here, too. It sucks depending on the solarium for everything."
             narrator "Time to start making your own resources, you suppose. Or hunting them."
             zeff "I've been surveying the woods myself. People have set up camp out there. Williams doesn't want us interfering, in case the solarium caught wind of it, but she doesn't wanna set them on the people at the camp either."
@@ -2023,30 +2235,22 @@ label return_to_plane:
             zeff "Same story. No family, the slums were fryin' up. Figured better to be poor inside than out."
             narrator "Quiet sets in. You catch Zeff sneaking a glance toward the back before taking a swig from his water canister."
             zeff "Something's off about the tech she uses. I've seen some stuff in my days with Williams, gadgets from the UN science wing you wouldn't believe. But never anything like what she can do."
-            scene fortinside
             narrator "As you settle into bed, you can't help but wonder about the extent of that heat power."
             narrator "The next morning comes quickly."
             narrator "You dress to find Su'til already headed out the door."
-            hide zeffwilliamssutil
 
     sutil "I'm going to monitor the woods."
     narrator "Williams barely looks up from the book she's reading. Ever since you and Su'til told her about the Ite creatures in the vicinity, she's gone crazy with the research."
     williams "Fine, just don't take the plane, we can't be flying around too much attracting attention."
 
 
-    scene fort with fade
-    show sutil
     narrator "You step out into the balmy air."
     sutil "I had my own aircraft at the {i}e'mul{/i}. I used it to reach here, and its programming returned it safely. It's cloaked with soundwaves that neutralized plenty of shards from the meteor showers the Gir threw at Earth these past few years. If only we could travel that way."
-    hide sutil
-    scene camp with fade
     narrator "A few minutes of walking bring you to the edge of that new camp in the woods."
     sutil "It seems my people have settled here. The Messenger Kigi had spoken in passing of abandoning our way of life for the menial. But we always looked up to her - a mentor with unlimited time, same as ours."
-    hide sutil
     narrator "Once up closer, you scan the massive white and beige tents - a surprisingly low-tech society, or so it seems." 
     narrator "Su'til tenses beside you, as a man with dark hair and piercing black eyes approaches. His simple beige uniform seems almost out of place beside Su'til's ornate suit."
 
-    show sutilkaskal
     sutil "Kaskal."
 
 
@@ -2077,9 +2281,7 @@ label return_to_plane:
     kaskal "Even after everything she's done, you deny yourself the freedom of the stars?"
     sutil "I would have rather had your protection than freedom, Kaskal."
 
-    scene fortatmos with fade 
     narrator "Once she turns on her heel to leave, you avoid Kaskal's dark gaze to join her."
-    hide sutilkaskal
     sutil "We were bred in pools of randomized genetic material from station residents we'll never meet. Imprisoned on a station for eons. Kaskal might think he's clever because his mentor rescued him from being a pleasure giver, but I've made my own path. He doesn't get any credit."
 
     menu:
@@ -2093,40 +2295,29 @@ label return_to_plane:
             sutil "For years, Kaskal made me watch the people around here to learn the language so I could blend in and out a signal coming from the lake next to their camp. I didn't know the mission wasn't Kigi's directive. But now that I'm here...I won't abandon you the way I was."
             narrator "You think of what Kaskal said about the o-zone layer. Maybe her people had something to do with the sky burning up..."
 
-            scene fort 
             narrator "The fort doors hiss open."
-            scene fortinside with fade 
-            show sutil
             sutil "For millennia, the Bridge has guided the Til'amaru against the Gir. They want us all gone, Til'amaru and your people. We need to find out why."
         "What is the Bridge?":
             sutil "For millennia, the Bridge has guided the Til'amaru against the Gir. They want us all gone, Til'amaru and your people. We need to find out why."
-            scene fort 
             narrator "The fort doors hiss open."
 
         "Who is Kigi?":
             sutil "The messenger who relays the Bridge's orders from the stars. She's always had...I think you call it a 'stick up her body'. 'The horrors of the present grant the courage to move forward', she'd always say. But killing the other sunborne crosses a line."
-            scene fort 
             narrator "The fort doors hiss open."
 
-    scene fortinside with fade 
-    show sutil
     narrator "Suddenly fatigued, you sit on your cot. To your surprise, Su'til sits beside you."
     sutil "Kaskal was labeled an inferior thinker as a boy. They work as {i}namsa'ga{/i}...recreationals or 'pleasure givers'. They entertain the {i}zu'sum{/i} or 'superior thinkers' - educators who teach history, survival, and evolution so we don't end up like the people who stayed here."
     sutil "They only allow one child per every educator and recreational pair to avoid overpopulation like happened on Earth."
     sutil "Kaskal's mentor was a superior thinker and the head of our Evolution branch, developing technology for star exploration. He took Kaskal under his wing as a boy, evidently seeing the potential in someone he deemed on the border of educator and recreation. It evidently gave Kaskal quite the savior complex."
     sutil "I haven't gotten close to the {i}e'gun{/i}...to the {i}camp{/i} - our land home - before today. The signal has to be connected to the Gir."
 
-    hide sutil
     narrator "She leaves then without a word, and you lie back for a brief rest."
     narrator "No telling how much time passes before something rouses you yet again - a noise? Or maybe just a feeling."
 
     narrator "Forcing yourself into a sitting position, you glance toward the fort entrance to see Su'til beckon you over."
     narrator "Creeping over to where Su'til stands, a voice becomes apparent through the small peek window Su'til has opened."
 
-    scene fort1 with fade
     narrator "Outside, Williams stands across from what looks to be some sort of hovering orb...a drone, perhaps? But why is she...speaking to it?"
-    scene fort 
-    show williamsclose
     williams "The girl isn't going to ruin anything. If she was, she'd have done it already - she seems to want to help, if anything. You've got to trust me."
     narrator "Despite the orb's brilliance, the radiometer out front doesn't beep once."
     narrator "Glancing over toward Su'til, she gestures to you through gaze alone to stay silent."
@@ -2135,32 +2326,24 @@ label return_to_plane:
     jump the_lake
 
 label retrun_the_lake:
-    scene fortsolarium with fade
     narrator "You awake to near dusk outside, surprised Williams or Zeff didn't wake you. You glance around the empty space before deciding Su'til might be charging up, and the other two likely went to check on the shelter out back."
     narrator "Grabbing a pair of binoculars, you survey the solarium from a safe distance before making your way out to the woods to survey the Til'amaru camp. The fading humidity wafts through your hair, as you crouch behind a tree at a sudden movement."
-    scene campdusk2 with fade 
     narrator "Several feet behind the outermost tent, a woman squeals, dragged by her hair in a man's rough grasp. She pleads in another language, cheeks streaked with tears. Just as he goes to strike her across the face, Su'til's commander - Kaskal - looms up from behind, wrenching the man back by the collar of that strange uniform they all seem to wear. Turning around in shock, the man scoots back, while the woman stands and takes off toward the camp. While the man utters something else that sounds like a plea, Kaskal delivers a final blow to the man's face, knocking him out."
     narrator "You look on, not moving a muscle, as Kaskal treads back toward the rest of camp."
 
-    scene roamerinjured with fade
     narrator "Breath coming quick, you dart away back toward the fort when you hear a whimper. You look to the left to see that strange humanoid creature peering out from behind a tree at the injured woman who has found refuge behind a boulder. On seeing you, the woman looks up with imploring eyes - when the creature steps out, she lets out a scream that she barely manages to muffle with her hand."
-    show roamerclose
     roamer "We are not here to hurt you, I will look after her. We need rosemary for her wounds. It's a small green plant with many leaves that grows on the forest floor."
-    hide roamerclose
 
-    scene campdusk2
     narrator "With a slow nod, you turn back into the woods. You figure if the creature wanted to kill you or the recreational, it probably would have. Trudging through the underbrush, you glance around, A fern - too large. Moss...so much moss. You wonder if there might be some pain medication at the fort you can bring the woman or even take her back to the shelter - You stop short at the sound of buzzing. No sooner do you swat away one bee that the entire hive comes into view, at about your eye level among the branches of the tree directly in front of you."
     narrator "There, at the base of the same tree, you recognize a clump of rosemary... You brace yourself." 
     narrator "You've faced worse - hell, these last few years have been worse than a little sting. You even recall a tip from basic about eucalyptus repelling bees. Remembering a eucalyptus situated not far from the camp, you sprint back to the perimeter. Crouching to avoid notice, you grasp onto a knob along the smooth bark before snapping off a cluster of leaves."
     narrator "It's a short trip back to the beehive before you have to muster your courage again."
-    scene bees
 
     jump act1_final
 return
 
 #at this point, we are at line 1922
 label act1_final:
-    scene campdusk2
     menu:
         "Shield your face with the leaves and dive toward the base of the tree." if not army_crawl:
             narrator "You scramble back at three sharp zings, two along your nape and one on the back of your hand."
@@ -2175,42 +2358,29 @@ return
 label army_crawl:
     narrator "Gripping the soil between your fingers with one hand and shielding your face with the leaves with the other, you begin to inch forward. You purse your lips, as the buzzing draws closer. Once it's right on top of you, you turn your face just a hair to stare directly at the clump of rosemary."
 
-    scene roamerinjured
     narrator "Tearing free a handful, you inch backward until you've cleared the hive by several trees worth. Once back at the camp's edge, you drop the rosemary, to which the creature simply picks it up. While the woman recoils, the creature raises a placating palm." 
     narrator "Closing her eyes, the woman allows the stranger to apply several leaves to the wounds on her throat and exposed chest under the torn collar of her uniform. You tear yourself away from the scene, making for the fort. A shot rings out."
 
-    scene campdusk2 with fade
     narrator "The people at the camp don't seem to use such weapons - this must be a solarium guard. Breaking free with a smash of the back of your head to the guard's chin, you barely make it across the stretch to the fort before yet another solarium guard descends on you."
     guard "Spying on us!" 
     narrator "Reaching for the pistol at your holster, you maneuver out of his grasp. Before you can aim the weapon, a blow knocks you on your back. You go to spring to your feet, only to find yourself staring down the tube of a rifle. Su'til approaches."
-    show sutil at truecenter
     sutil "Let him go."
     narrator "With a snicker, the guard turns for her. She stands her ground, but despite a pained expression in her eyes at the presence of his weapon, the air around her doesn't heat up. As the guard goes for Su'til and you ready your gun, a shot rings out - Zeff. The guard's body drops to the ground. Hearing footsteps, you turn to see Williams leaving the fort."
-    hide sutil 
-    show williamsclose at truecenter
     williams "Dumpster out back."
 
-    hide williamsclose
     narrator "On your way to help out with the body, you lock eyes with Su'til - she resisted her urge to destroy that guard despite his intent to use his weapon. A low growl comes from behind you. Not again... You turn to see not one, but two coyotes. Matted dark fur stretches over exposed ribs, sunken eyes almost black in the waning light." 
     narrator "Hand going to the gun at your waist, you freeze and throw your hands over your ears at a shrill, deafening cry."
     #play sound Roamer
     narrator "The coyotes turn and scamper back toward the tree line, disappearing into the shadow of the woods. You and Su'til glance to the right to see the small Ite. She speaks just high enough for you to hear in that melodic voice."
 
-    show roamerclose
     roamer "Stay away from the trees."
 
-    scene solariumfaraway with fade 
     narrator "Later that evening, you watch the twilight fade, Su'til having left inside to re-charge. Kaskal approaches from the tree line, silhouette stark against the waning golden light."
-    scene fort1
     menu:
         "Shout to alert the fort.":
             narrator "Kaskal just manages to withdraw the strange gold triangle from over his shoulder when Zeff comes charging out of the fort behind you. In the meantime, you use Kaskal's distraction to use your own weapon to disarm him. As the triangle clatters to the dirt, you sit on his chest, pinning him. Hold his gaze with eyes of steel until he relents."
-            scene fort
-            show kaskal
             kaskal "Fine. You all can have her. I have my own people to protect."
-            hide kaskal
 
-            show gam with fade
 
             narrator "Just as you ease up just a hair on his chest, you find yourself on your back again, the wind knocked out of you. Kaskal looms over you, and Zeff dives for him. Before Kaskal can retrieve his weapon by your feet, you kick his knees out from under him. You pin him again, this time with his own weapon held fast to his throat, face framed within the golden triangle gleaming in the dusk. Su'til appears from the fort behind you. Before you can even turn to face her, Kaskal runs off into the woods at her expression, leaving his weapon in your grasp."
         "Tackle Kaskal to the ground":
@@ -2244,12 +2414,9 @@ label army_crawl:
 #ACT TWO:
 #1985
 label act2_intro:
-    scene solariumfaraway
     narrator "The afternoon sun blares down, promising the steady, continuous scorch of earth below."    
 
-    scene fort
     narrator "Making the trek from the shelter around to the fort after a fresh food provision, you check your sunband-"
-    show Olga
     Olga "Fancy seeing you here."
     narrator "The voice startles you, as you glance up to see Olga. A jeep sits several meters away, probably why you hadn't heard her coming."
     narrator "She's not as intimidating in the sunlight - all-white pantsuit contrasting with the creme blouse and slacks she wore last time." 
@@ -2257,11 +2424,9 @@ label act2_intro:
     Olga "A peace offering. I had tried to give it to your lieutenant, but...we don’t exactly see eye-to-eye at the moment."
     narrator "You figure that finding out someone has been harvesting human flesh might indeed change your view of them."
 
-    hide Olga
     menu:
         "Accept the rose.":
             narrator "With that, she turns back for the jeep."
-            hide rose
             narrator "A sweat droplet drips down your nape, as you consider the rose. Perhaps you can present it to Williams in a bit."
             narrator "Not wanting to return immediately to the fort or stay out in the blistering sun, you head toward the woods."
             narrator "The rose is unassuming enough - soft petals, a single thorn on its stem."
@@ -2277,7 +2442,6 @@ label act2_intro:
             roamer "Come with me."
             narrator "You blink away tears, breaths coming in short gasps. The forest blurs around you, as she brings you both to a halt."
             roamer "Inside."
-            scene Cave with Roamer
             narrator "As the creature shoves you into some sort of pool, your muddled brain realizes one thing - the solarium never wanted peace."
             narrator "When a splash hits you in the face, the water's warmth finally registers. Almost as hot as one of those saunas they had back in the day. You draw a deep breath, as the sweats and trembling begins."
             roamer "Good, you will sweat out the poison."
@@ -2326,19 +2490,15 @@ label act2_intro:
             Olga "That's a shame. In case you change your mind..."
             narrator "She stoops to place the rose on the ground before giving you a final glance."
 
-            scene fortinside with fade
             narrator "No sooner do you lie down on your cot to close your eyes that the drone of the prop plane engine reaches your ears."
             narrator "Williams curses, as Zeff bolts toward the door."
 
-            show zeffwilliams
             williams "First you and now her-"
             narrator "A small but audible explosion echoes over the Wilds between the solarium and where you stand. You all leave the fort, only to spot the solarium's entire science wing in shambles."
             zeff "There goes our plane."
             williams "The solarium will see this as all-out war. The only bright side is she crushed the weapons hold along with the science wing. It'll take them a while to re-group with the closest solarium on the state border."
             narrator "When Su'til comes within sight of the fort, she uses her knuckles to rub soot off her cheek. You don't even need to ask how she survived the explosion, as pride in your chest dissolves into a shiver down your spine.
                 In fact, Su'til keeps quiet all day, spending most of her time out front of the fort. You walk outside to find her in the expected basking position, knees drawn up, one arm resting across her thighs as the sun kisses her face."
-    scene fortinside
-    show sutil
     menu:
         "Are you okay?":
             narrator "She doesn't turn toward you, only keeps quiet until her lips finally move."
@@ -2355,30 +2515,23 @@ label act2_intro:
     narrator "A woman approaches - not Olga or anyone you've seen before."
     narrator "Platinum-blond hair, partially tied up and flowing down her back. Slender form cloaked in a bronze-hued and slightly tighter fitting uniform."
 
-    hide sutil
-    show kigi with fade 
 
     sutil "Messenger Kigi."
     narrator "The woman - Kigi - sweeps first Su'til and then you with her gaze."
 
-    hide kigi
-    show kigisutil with fade
 
     kigi "I knew he had a soft spot for you. You have until the next light to disappear, {i}nam'ud{/i}. There is no hope for you or them - not here or anywhere. You all will only ever destroy."
     sutil "You don't know what the Kadir want. The Bridge cut you off, and the sun doesn't power you. Your {i}til{/i} stink from nuclear decay."
     narrator "At Su'til's words, you notice what looks like old lesions marring Kigi's cheekbone." 
     kigi "You will regret this."
     narrator "Kigi's eyes shift to you, as she turns back for the tree line."
-    hide kigisutil
 
-    show sutil
     menu:
         "The fort still stands with you.":
             narrator "Su'til turns toward you, an unreadable expression on her face."
         "What do you think she'll do?":
             sutil "Come after us with weapons, same as the solarium, I expect. We should be ready."
 
-    hide sutil
     narrator "Whatever the solarium or the Til'amaru try, we will be ready."
     narrator "The next week brings yet more scorching sun and dwindling wildlife only found with the Ite's help."
     narrator "The solarium must be re-grouping, and Su'til warns not to underestimate Kigi's willingness to employ technology to come after the fort, despite her alleged commitment to a low-tech life back on Earth."
@@ -2386,7 +2539,6 @@ label act2_intro:
     narrator "For his part, Zeff pours over medical textbooks, determined to serve as resident medic."
     narrator "As the days pass, you find yourself wondering what a life truly committed to defending the helpless will entail. Especially once Zeff approaches you one slow night."
 
-    show zeff
     zeff "Did you have a specialty planned before heading to the fort? I always wanted to get into medicine, but my dad always thought doctors were snake oil salesmen. But growing up, no one was ever around to help us with my sick mother...sick in the head, anyway. Sometimes, if you can't fit the mold, you gotta make it. I wanna help others, if I can."
     menu:
         "Security":
@@ -2402,7 +2554,6 @@ label act2_intro:
         "None yet":
             zeff "If I didn't know any better, I'd say you help out with most things around here. That kind of flexibility is important-"
 
-    hide zeff with fade
     narrator "A thump sounds from outside."
     narrator "You and Zeff look at each other. He glances then up toward a small door in the ceiling - the lookout point. In your time here, you haven't had the chance to use it."
     narrator "Zeff drags the ladder over from its spot by the entrance to the back corridor. Not missing the expectant look in his eye, you grasp the first rung."
@@ -2417,10 +2568,8 @@ label act2_intro:
     narrator "The quiet sets in again, permeated seconds later by a subtle rattling sound from directly below."
     narrator "Scratching begins on the outer wall beneath you, not several meters from the lookout port."
 
-    scene fortnight with fade
     narrator "A shadow emerges from the darkness below, barely revealed by the pale moonlight, and then-"
 
-    scene sutilrattler with fade 
     narrator "A head snaps up to look directly at the viewport - horrible abyss of a maw elongating into a dislocated jaw drenched in saliva. Hideous black pools where eyes should be, staring into nothingness and at your faces all at once."
     narrator "The moment a long tongue glistening in the moonlight flicks upward, a gunshot sounds from not far from the fort."
     narrator "The beast turns faster than natural, stooping from two legs to four to scamper toward the tree line."
@@ -2435,16 +2584,13 @@ label act2_intro:
     williams "Run!" 
     narrator "Su'til takes advantage of the creature's distraction to wrench herself free from its grasp and sprint back to the fort."
 
-    scene rattlerburning with fade 
     narrator "As the creature bounds toward the entrance to building faster than the doors will be able to slide shut, you hoist Kaskal's snagged triangle weapon to toss over the creature's head. Disoriented, the creature halts."
     narrator "At one more shot from Williams, the beast staggers back."
     narrator "Not moments later, the grenade detonates in a fountain of amber that engulfs the monster. An ear-splitting screech fills the air, as the thing's form finally stills within the flames."
     narrator "You and Zeff scramble down the ladder, just as Su'til and Williams re-enter the fort. Though already fading, the deep gash on her cheekbone looks painful."
 
 
-    scene fortinside with fade 
 
-    show zeffwilliamssutil
     williams "Good thing the shelter's attached to the fort."
     zeff "Was that one of those forest things? Never seen one that big."
     sutil "This is something else. Probably the solarium."
@@ -2460,18 +2606,14 @@ label act2_intro:
     narrator "Su'til shakes her head."
     sutil "Kigi probably used the small skycraft to poison the lake water."
 
-    scene fortinside with fade
     narrator "Sleep doesn't come easy that night, every yelp and keen outside drawing your attention, no matter how distant. Dreams flicker in and out, until-"
     narrator "Your eyes open to find Su'til's face looming over you."
     narrator "Resisting the urge to scream, you shut your mouth against your thudding heart."
 
-    show sutil
     sutil "You were making strange noises in your sleep."
-    hide sutil with fade 
     narrator "Then, just as soon as she'd appeared, she's gone."
     narrator "By some good fortune, the fort and shelter sit in silence the rest of the night."
 
-    scene rattlerdead with fade 
     narrator "The dawn light wakes you again, and you glance around to see Williams and Zeff sleeping on their cots. Su'til must be either basking out front or in the cell room."
     narrator "A sharp whimper pierces the dark room, and your heart hammers...until your eyes settle on Zeff turn over in his sleep, restless." 
     narrator "Once out front, you suppose the cell room which would make sense after last night..."
@@ -2479,11 +2621,9 @@ label act2_intro:
     narrator "Sensing eyes on you, you finger the handgun in its holster at your waist and look toward the forest."
     narrator "Relieved to put some distance between you and that foul odor sizzling in the morning sun, you sigh as the shade of the trees washes over you."
 
-    scene trees 
     narrator "Glancing around, you see a shape flit through the trees up ahead. Too small to be the creature from last night and too large to be Roamer or her kinspeople."
     narrator "When the figure moves through the trees in the opposite direction, you pursue, confident that your weapon can..."
 
-    show kaskal with fade 
     narrator "You stop short when the figure halts and turns toward you - Kaskal."
     kaskal "You're alive."
 
@@ -2530,13 +2670,10 @@ label act2_intro:
     jump night_stroll
     label return_night_stroll:
 
-        scene fort1 with fade 
         narrator "You stop short at the sight of the cougar gnawing at a bone shard amid the gore. Peering closer as much as possible given the wide berth you allow the big cat, you notice it's human..."
     narrator "Whatever made this person transform has turned back...evidently with the dawn. Su'til walks up from behind."
 
 
-    scene fortnight
-    show kigikaskalsutil with fade 
     sutil "Since the infected transform when the sun sets, it looks like the pathogen runs on the same {i}til{/i} that powers sunborne."
     narrator "Out of the corner of your eye, the cougar vanishes into the trees. Su'til seems to notice your questioning gaze."
     sutil "Sunborne cells are infused with photovoltaic molecules taken from microbial life forms discovered on meteorites captured at the Star Home. They are enhanced with silicone to augment the natural durability of evolution near a supermassive black hole. Apparently, the process works even after death."
@@ -2558,11 +2695,9 @@ label act2_intro:
     kaskal "I mean to make things right. For now, stay inside when the dark comes."
     narrator "Hanging his head, he turns back for the woods."
 
-    scene forestnight
     narrator "As the day wanes, you walk the woods for what could be hours. Knowing you should be back at the fort - particularly once the screeching rattles pierce the distance - you need to collect your thoughts-"
     narrator "Kigi's voice sounds from behind you, gentle."
 
-    show kigi with fade 
     kigi "You persuaded him to try and stop it."
     narrator "You turn, holding her gaze in the twilight filtered through the canopy above. She leans against the trunk of the nearest tree."
     kigi "We have all seen what the solarium people are capable of. That Olga person is relentless. Destroying their fortress only goes so far, especially with so many solariums and the technology to survive by many means."
@@ -2598,7 +2733,6 @@ label act2_intro:
             narrator "An almost unnerving smile spreads across Kigi's face, eyes sparkling in the moonlight."
             narrator "She beckons to you, leading you a ways away from the Til'amaru camp to a clearing. She gestures to what appears to be an aircraft glinting in the low light. It's almost trapezoidal in shape."
 
-            scene cockpit with fade
             narrator "You follow in after her, squinting around at the small cockpit, an even tighter space than the fort's plane." 
             narrator "Beside you, Kigi swipes her fingers over several monitors on the panel before you both. A quiet whir surrounds you, as the craft takes off with barely a jolt."
             kigi "Pick up that case on the center console, and drop it when I give the order."
@@ -2609,14 +2743,11 @@ label act2_intro:
 
         "Return to send a warning to the solarium.":
 
-            scene fortnight
             narrator "Sprinting as fast as your legs will carry you, you burst into the fort and shout a warning to Williams."
             narrator "She dials up the solarium to get their sick as far away as possible before the next transformation."
             narrator "Su'til just stares, and you think she must know of your dealings with Kigi."
 
-            scene fortinside
 
-            show sutil 
             sutil "You are here."
             narrator "She must notice your confusion."
             sutil "This is a saying among our people when someone returns from a battle they were not expected to survive."
@@ -2629,7 +2760,6 @@ label act2_intro:
 #2342
 
 label return_to_fort:
-    scene fort
     narrator "The dawn light glints off the distant sunshield over the fort - even it's beginning to fall out of orbit...just as Kigi's fire had fallen from the sky onto those cages full of your fellow humans."
     narrator "The moment you spot Su'til lounging atop the shelter, you can tell she already knows from the way she doesn't even spare you a glance." 
     sutil "They didn't suffer. No use dwelling on it."
@@ -2637,7 +2767,6 @@ label return_to_fort:
     straggler "No more food."
     narrator "Your chest falls, realizing the fort has run out since the solarium's ration provisioning stopped following Su'til's little stunt...no matter how good of a hunter she and Roamer might be, the fort would struggle going forward."
     narrator "Time to see how Roamer can help."
-    scene forestnight
     narrator "The humid night hits your face like a lukewarm sauna, as you cross from the fort to the tree line with a rifle in hand."
     narrator "Small animals to start, with any bigger game as a bonus."
     narrator "When a twig snaps under your foot, it almost makes you jump before your ears pick up on quiet footfalls in the leaves behind you."
@@ -2669,22 +2798,17 @@ label return_to_fort:
     narrator "As it happens, the food from your hunt sustains both shelter and fort for the next week."
     narrator "Still nothing from the solarium, for which you are all grateful. On the other hand, relying on the backup generator for cooling since the split from the solarium can only last so long."
 
-    scene fortinside with fade 
 
-    show zeffwilliamssutil
     narrator "As you sit on your cot polishing your pistol on the third morning of reserve energy at the fort, Su'til joins you while Williams and Zeff chat in the rear corridor."
     sutil "I'm joining your next hunt."
     narrator "You give her a withering look that you know she'll take as agreement."
 
-    scene fort1 with fade
     narrator "A knock sounds at the door. Su'til tenses beside you before standing to peek through the peephole. She turns around, as Williams and Zeff approach."
     sutil "A straggler."
     narrator "Williams places a cautious hand on her gun."
     williams "Let them in."
     narrator "Su'til activates the doors to hiss open, revealing a slender man in torn clothing. Light, sunken eyes stare out from an ashen face."
 
-    scene fortinside with fade 
-    show zefftoddsutil 
     zeff "...Dad."
     todd "Carl. I finally found you."
     zeff "Why did you leave?"
@@ -2703,7 +2827,6 @@ label return_to_fort:
     narrator "Su'til strides up to Todd. For the most part, you and the other fort members give Zeff's father a wide berth. You learn his name is Todd, and little else. Williams takes out a full bottle of vodka from some apparent hiding spot beneath her desk and manages to put away half before dusk. Then, it's sunset. You all file outside, with you, Williams, and Zeff holding weapons."
     narrator "Su'til stands beside Todd, basking in the fading daylight. The moment the sunset vanishes, quiet sets in. You think you can hear your pounding heart over your suppressed breaths-"
 
-    scene toddbecomingrattler with fade 
     narrator "All at once, Todd doubles over. Su'til is already grasping his wrist, the air around them wavering with her heat."
     sutil "Listen to my voice. You will {i}not{/i} give in to this."
 
@@ -2716,12 +2839,9 @@ label return_to_fort:
     narrator "The beast drops to the ground, body motionless and face-down in the water...just as Zeff had said happened to his own brother years ago."
 
 
-    scene fortnight with fade
     narrator "Silence fills the night air."
 
-    scene fortinside with fade 
 
-    show sutilwilliams
     sutil "It might have helped to track him down earlier."
     williams "Gee, maybe Zeff didn't have any fancy ancient alien tech at his disposal. You've all been so sheltered, you've never known real disaster."
     sutil "If you find this rock so terrible, why are your people just sitting around? Or am I too {i}sheltered{/i} to understand?"
@@ -2729,11 +2849,8 @@ label return_to_fort:
     narrator "As Zeff returns to the fort, one thing is clear...any remaining rattlers are a lost cause."
 
 
-    scene fort1 with fade 
     narrator "The next day passes in a blur before dusk. You've barely settled to rest on your cot, when the fort's front door swings open with a crash, Su'til shoving Olga inside. Williams stands from her cot, weapon drawn. Su'til keeps Olga's forearm in an iron grip."
 
-    scene fortinside 
-    show olgasutilwilliams
     sutil "No need for guns, this one's going to talk."
     narrator "Olga looks at Williams, scandalized."
     Olga "Tasha, you've got to rein in your little freak, sneaking up on me enjoying a pleasant sunset-"
@@ -2754,9 +2871,7 @@ label return_to_fort:
     Olga "If the sun gem's people play their cards right without that {i}messenger{/i} of theirs, will see to that with their relentless expansion."
     williams "So, I never had to..."
 
-    hide olgasutilwilliams
 
-    show zeffolgawilliams
     zeff "Help the solarium torture all those people."
     narrator "Zeff cuts off Williams before turning on Olga."
     zeff "Who the hell are you really? Did you even actually find the solariums?"
@@ -2786,17 +2901,14 @@ label return_to_fort:
     Olga "Destroying that creature was my last stand. Soon enough, the rift will vanish, and we will no longer exist here as mere scattered human hybrids. For what it's worth, Tasha, I didn't mind destroying those flames to save her. In the end, we will all merge in balance."
     narrator "With that, Olga draws her handgun from its holster at the belt of her slacks and puts a bullet through her own eye. Not moments later, a blinding flash of light appears before dissipating into thin air."
     narrator "Yet more silence, as time seems to freeze."
-    scene forest
     narrator "Su'til, Zeff, and Williams lock up the fort and shelter while you head out to the forest to warn Roamer."
     narrator "The forest once again sings around you, as you make your way through the dark trees. All at once, footsteps behind you almost make you drop your flashlight as you whirl around, clutching your pistol."
     narrator "There stands a solarium guard, his own rifle poised straight at your face."
-    show guard
     guard "Don't move. You heading out to poison the water again?"
     narrator "You spot a vine hanging just behind the guard. If you can somehow get him to move and disarm him, you can move up into the tree and shoot from above."
     narrator "Moving faster than your brain can hesitate, you take aim and shoot at his rifle. A clang resounds off the larger weapon, as the guard retracts his hand to avoid the bullet."
 
 
-    hide guard with fade 
     menu:
         "Leap around the guard to grab the vine.":
             narrator "Not a vine, a tongue."
@@ -2817,10 +2929,8 @@ label return_to_fort:
     narrator "Several shrill, rattling cries sound through the night."
     narrator "Grasping the handgun at your waist, you dart behind a tree as the Ite behind you swarm to arm themselves."
     narrator "The first rattler bounds through the woods to your left, taking out three Ite with a swipe of its sharp tongue."
-    show rattler2 at truecenter
     narrator "With a shrill cry that pierces your ears, Roamer leaps atop the beast. She scarcely manages to cover its head and shoulders with her corrosive cull before the creature tosses her away where she hits a tree and falls to the ground."
     narrator "Two more Ite twist around the beast's legs while a third attacks from the front, prompting a keening rattle of agony."
-    hide rattler2
 
 
 #2506
@@ -2834,18 +2944,14 @@ label return_to_fort:
             narrator "As the creature nears, you duck down into the brush, stepping as carefully as possible to make your way to the creek."
             narrator "By some stroke of luck, the air around you cools as you spot the narrow river not 30 feet away." 
             narrator "Trudging up to the edge, you freeze at the sound of near-silent footfalls behind you. Not giving yourself time for hesitation, you bow your head and let yourself sink into the cool water."
-            show nebhidesinriver at truecenter
             narrator "Your chest rebels, screaming for air at the abrupt change in temperature. Clenching your muscles, you keep your face under the water."
             narrator "Each second seems an eternity, as you let the brisk water absorb your heat, masking you to the abomination you can sense leaning over your back."
-            hide nebhidesinriver
-            show rattlershadowinriver at truecenter
             narrator "You can't say how much time passes when, half submerged, your ears pick up on a yowl, followed by a rattle and footsteps sprinting off through the leaves."
             narrator "You recognize that yowl, that graceful leap likely quick enough to evade even these monstrosities. No idea whether multiple roam these parts or it's somehow been the same one all along,"
             narrator "the gratitude fills you all the same."
             narrator "Long Leap - you think to call the elusive animal in your delirium, as your head begins to swim from lack of air. Like that leap McKinley ordered you to take way back when..."
             narrator "You only last a few more seconds before tearing your face from the water with a gasp."
             narrator "Clambering through the brush back toward the Ite's fading shrill cries and waning those rattles, you pause at the sight of Roamer leaping off another of the creatures."
-            hide rattlershadowinriver
         "Run into the woods.":
             narrator "A second rattler blocks your escape attempt, stopping you in your tracks with a shrill bellow."
             narrator "In that glare, you see the primordial reptilian ferocity from which all humans originate. Spurred on by a fear and ire just as primal, you raise your gun, shooting the monster through the eye socket."
@@ -2876,21 +2982,15 @@ label return_to_fort:
             narrator "Ever-adapting, over countless eons."
             narrator "Then come the nibbles, just gentle enough not to draw blood..."
             narrator "By some good fortune, you find yourself with no fatal teeth marks come dawn. Clambering beyond the tree line, you sigh with exhaustion at the sight of a massive metallic rectangular craft emerging through the atmosphere. Not the sunshield-"
-    show dusa at truecenter 
     #play sound enkiintro
     narrator "Before you can shout to warn the fort, a trapezoidal outline about half the size of the broken shield soars through the metal, leaving a flaming hole in its wake."
-    hide dusa
-    show shatteredsunshield at truecenter
     narrator "You stare, as the shield shatters into countless fragments that crash to the barren earth in a chaotic yet harmless torrent."
     narrator "Not moments after Su'til comes sprinting out of the fort, Kigi breaks past you at the tree line."
-    hide shatteredsunshield
     kigi "Kadir."
     narrator "The Bridge."
-    show bridge at truecenter
     sutil "He's fused with his {i}du'sa{/i}. Something the rest of us could only imagine."
     narrator "The rippling bronze craft lands in a cloud of dust. Undulating, the roiling mass forms two eyes. Those diagonal slit pupils regard you, magnified to ebony pools in mere rings of gold – dead stars seeking to consume entire planets."
     narrator "The strange moving material then peels away to dissolve into a man. With dark, thick hair and skin like Su'til and Kaskal, his lithe form is clad in a black fabric far plainer than Su'til's uniform-like uniform."
-    hide bridge
     thebridge "Kigi, {i}nam'ud{/i}, why have you all left the star station?"
     kigi "Kadir, our Bridge to the beyond...do you mean to include this {i}gishpa{/i} in our consultation?"
     narrator "The Bridge's dark eyes flit to you."
@@ -2937,12 +3037,9 @@ label return_to_fort:
 return
 
 label periodic:
-    show periodictable at truecenter
     thebridge "This presentation uses the language of this region, so that you both might read it. The field will require a compound composed of the elements Graphine and Talarium for electric conductivity and energy transmission."
     narrator "Su'til speaks first."
     sutil "Graphine's here - the letters \"Gp\" in English."
-    hide periodictable
-    show periodictable at middleleft
     narrator "The Bridge nods, looking to you."
     label guess_element:
         if not ta_guess:
@@ -2967,7 +3064,6 @@ label periodic:
         else:
             thebridge "Incorrect, try again."
             jump guess_element2
-        scene black
     narrator "You think you detect the smallest hum from Su'til beside you. Before you, that rippling shell begins to encase The Bridge once more."
     thebridge "Investigate the signal from the lake. There is more to determine yet about the first of my people to reach this continent in their flight from the Pox millennia ago. Beware the inverted sunrise - it will invite a darkness unknown, of which not even the {i}Gir{/i} can conceive."
     narrator "With that, he ascends into the sky in a golden spectacle that hurts to behold. You turn to Su'til who meets your gaze with a smile."
@@ -3014,11 +3110,9 @@ transform y2_position:
  
  
 label actIII_main:
-    scene TheBridge
 
     #bridge_forest
     jump bridge_forest
-    scene forest
 
 label actIII_start:
     #play music "music/actIII_music.mp3"
@@ -3064,7 +3158,6 @@ label actIII_start:
             williams "It's low...probably trying to scout a way to disable the engine."
 
             label drone:
-                scene Drones
                 menu:
                     "Reverse to crush the drone.":
                         narrator "Grateful for the jeep's open-air setup, you listen carefully for the subtle touchdown of the drone behind the vehicle. You grasp the gear shift, and-"
@@ -3095,7 +3188,6 @@ label actIII_start:
 
 
 label lake:
-    scene lake
     narrator "Your sunband sticks to your wrist which you move across your moist skin, staring at the lake up ahead."
     narrator "Compared to the forest creek that flows into it, the lake surface sits glistening in the sunlight with barely a ripple. Su'til steps up beside you."
     sutil "Kaskal and Kigi weren't brave enough to leave their tree shelter. Kaskal says he sent me here to look into the signal, but-"
@@ -3106,7 +3198,6 @@ label lake:
     sutil "I can look after my-"
     narrator "Su'til stops short, as the waters before you begin to churn."
     narrator "Your breath catches, as a form about the size of a big rig truck emerges from the lake. Bronze, though a darker hue than the Til'amaru uniforms, and trapezoidal in shape."
-    scene zigguratBG
     sutil "A ziggurat. The temples we built back when we still followed a religion."
     narrator "Static sounds from the massive object, jumbled warbles until a voice breaks through."
     ziggurat "Til'amaru and {i}gishpa{/i} stand together once again. A pity that the ones here first could not be here to witness it."
@@ -3120,29 +3211,19 @@ label lake:
     sutil "How do we beat them?"
     ziggurat "They cannot be defeated, but they can be deceived. Til'amaru and land dwellers alike -if you succeed in decoding the following message, all will be revealed."
     narrator "Characters form on the construct's surface above the intersecting lines."
-    show letter_one at one_position
     pause .5
-    show letter_Uppermost at uppermost_position
     pause .5
-    show letter_star at star_position
     pause .5
-    show letter_y at y_position
     pause .5
-    show letter_n at n_position
     pause .5
-    show letter_silent at silent_position
     pause .5
-    show letter_g at g_position
     pause .5
-    show letter_y2 at y2_position
     pause .5
     noname ""
     kaskal "The hieroglyphs alongside the cuneiform add a layer of mystery. Many years have passed since any of us have studied Kemet's speech."
     sutil "Yes. But the word for \"home\" second from the uppermost left is obvious enough in our language. The other {i}inim{/i} text shows \"ya'ngi\" which I haven't seen in Sumerian, Semitic, Egyptian or any of the tongues of Indus and Sin. It must not be in our records of this planet's languages."
     narrator "You figure the cuneiform must be the symbols that make up most of the message."
-    scene black
     narrator "You contemplate the uppermost left symbol."
-    show letter_one at one_position
 
 label first_letter:
     menu:
@@ -3156,8 +3237,6 @@ label first_letter:
             jump first_letter
         "The Number One":
             ziggurat "Confirmed. Move to the third symbol."
-            hide letter_one
-    show letter_star at star_position
 
 label third_letter:
     menu:
@@ -3171,19 +3250,11 @@ label third_letter:
             jump third_letter
         "Maybe just a star?":
             ziggurat "Correct."
-            hide letter_star
-    show ugaritic at middleright
-    show letter_y at y_position
-    show letter_n at n_position
-    show letter_silent at silent_position
-    show letter_g at g_position
-    show letter_y2 at y2_position
     narrator "Consider the bottom line of text."
 label yangy_puzzle:
     $ yangy = renpy.input("Use the chart to decode the message.\n")
     if yangy == yangy_answer:
         narrator "Fine work."
-        scene black
     else:
         narrator "Negative."
         jump yangy_puzzle
@@ -3239,7 +3310,6 @@ label yangy_puzzle:
     narrator "Noticing your scoff at the nickname, he turns toward you."
     kaskal "You are sproutlings - re-grown from the earth following the Flood. It's admirable, even if you haven't quite caught up to us."
     narrator "You think back again to what Su'til told you of the split between the educated and those used for recreation in their society. Quiet sets in, your voices replaced by the gentle forest song as insects replace birds for the night."
-    scene forest
     menu:
         "Su'til and I don't want to see any of you here suffer.":
             kaskal "Neither do I."
@@ -3278,7 +3348,6 @@ label yangy_puzzle:
     kaskal "I will prepare the {i}e'gun{/i}. If Kigi interferes, I will take care of it. Is there...anything that your fort needs in the meantime? Kigi kept around basic resources that she tries to hide from the others. Water, perhaps? The creek and lake are likely still contaminated."
     narrator "You think of the reserve generator, approaching its last legs. The multiple water canisters behind the cell room, however...you nod."
     kaskal "Come with me."
-    scene Camp
     narrator "You join him in a quiet trek through the woods until the subtle bustle of the camp comes into view. People in those same beige uniforms Kaskal wears...adults and teenagers, no young ones in sight. Maybe something to do with preparing to leave the star station and what Su'til mentioned about selective breeding using some sort of pool. Kaskal stops short in front"
     narrator "of you, your face almost colliding with his back."
     kaskal "Stay still."
@@ -3294,7 +3363,6 @@ label yangy_puzzle:
     narrator "In the meantime, you hide behind the nearest tent not far from the edge of camp. As soon as Kaskal draws out the other man with a brusque greeting, you tiptoe behind the adjacent tent, keeping an eye out for any onlookers."
     narrator "You sidestep to avoid a short thin man just in time. Pale skin surrounds large dark eyes. These people truly do come"
     narrator "from all over. You sigh on reaching the flap of the water tent's entrance. Ducking inside, you pause at the sight of a raccoon. The little animal turns to you with a chitter."
-    show racoon at truecenter
     narrator "Eyeing the gnaw marks on the outside of one of the two cannisters, you then notice around eight more jars against the back wall of the tent."
     narrator "Just a floor tarp, scattered metal cups, and these bizarre water jugs...and vermin standing in your way."
     narrator "Well, you've come this far..."
@@ -3315,7 +3383,6 @@ label yangy_puzzle:
     kaskal "Our latest supply must be only separate portions of hydrogen and oxygen. The Watcher's gone for a time, I will stand guard. I assume you know the composition of water?"
     narrator "H2O. How hard can it be?"
     kaskal "Join the openings. The copper jar holds the oxygen and the silver the hydrogen."
-    show waterpuzzle at truecenter
     narrator "Ducking back inside the tent, you drop to your knees and sigh in relief at the chance to unload the weight onto the tarp."
     narrator "Three copper and one silver, each with a neck topped off with a thin covering at the opening."
     narrator "Copper - nearer to red in color, just like rust. Rust is oxidized metal, you mutter internally, determined not to forget in your haste."
@@ -3362,7 +3429,6 @@ label yangy_puzzle:
                 narrator "Kigi stands on the shore, gazing out over the lake. The water shimmers with gentle waves, caressing the moist sand and the tips of the Messenger's boots."
                 kigi "It's a wonder these waters haven't dried up yet."
                 narrator "You step up beside her - maybe, just maybe, you can persuade her before she ruins everything."
-                scene ziggurat
 
     menu:
         "Tech isn't only about destruction but also repair.":
@@ -3410,7 +3476,6 @@ label yangy_puzzle:
                     sutil "I see. Even if you won't help us, you can trust us not to let the Gir breach the barrier."
                     narrator "She leaves without another word. Over beyond the far side of the tree line, silhouetted in the setting sun, a feline form steps back into the woods."
             narrator "As you head back to the fort, the dusk sky above shimmers with an expanding shield to conceal your journey to the beyond."
-            scene em
         "Let Su'til jump in the lake.":
             narrator "Su'til dives into the water just as the construct starts to glow. A deafening yet muffled explosion sounds, as the entire lake splashes about like a massive geyser."
             narrator "Once things settle, you don't need to wonder why all of the water has gone scarlet."
@@ -3428,7 +3493,6 @@ label yangy_puzzle:
         "Grab your pistol to stop Kigi":
             narrator "A wave of vertigo hits you, as Su'til tosses you away from the lake's edge just in time for the ziggurat's antimatter blast to envelope the edge of the forest. Forcing yourself to your feet, you turn to see the Til'amaru camp blasted to smithereens about three-hundred yards away. Kigi falls to her knees."
             narrator "Su'til strides over to the Messenger, wrenching her to her feet. Kigi all but slumps in her hold, as Su'til marches her over to the edge of the scorched camp. Creeping closer, the entire camp's charred remains - children included - comes into view."
-            show charred_camp at truecenter
             narrator "A crack pierces the air followed by a screech of pain, as Su'til snaps Kigi's spine before dealing a blow to her forehead, blinding her."
             sutil "Make that the last thing you will ever see...unable to even scream in anguish over your {i}family{/i}."
             narrator "You realize then that Kigi has also been rendered mute."
@@ -3437,7 +3501,6 @@ label yangy_puzzle:
             narrator "Kigi stumbles back, crystalline eyes darting behind you. Before you can turn around, a force grabs you by the back of the collar and wrenches you upward so fast your gut leaps into your throat. You catch a glimpse of the lake and ziggurat far below before the gusts from the nose dive force you to close your eyes."
             narrator "The impact from hitting the water's surface sends sharp spikes through your very bones, the resulting tidal wave swallowing you up into a vertical funnel."
             narrator "Su'til doesn't miss a beat, as she forces you to face her, her form silhouetted against the dawn above the deadly whirlpool above. She leans over you and grasps your wrist."
-            show su_til_wave at truecenter
             sutil "Don't worry, we'll make it out in time."
             narrator "As your eyes take in the looming wave surrounding you, a flood of euphoria consumes your form, as if simmering across every cell before reaching a crescendo and cascading into the first wave's spray just as Su'til whisks you upward toward the sky once again."
             narrator "Landing on the shore, you catch your breath before Su'til shoves you backward. You catch sight of Kigi floating facedown in the water halfway across the lake."
@@ -3451,7 +3514,6 @@ label yangy_puzzle:
             narrator "Su'til's severed head lies just where water meets shore, those eyes staring into nothing."
             narrator "The air around you ripples, as you glance up."
             narrator "Your heart sinks at a dark bowl-type shape descending toward you seemingly out of the rich sapphire sky. It doesn't block out the sun, and your mind can't even process what color it is..."
-            scene gir
             narrator "The field you created with the Bridge? No, this is something else - the inverted sunrise, reflected even in the uniforms of the solarium guards."
             narrator "Olga always knew her plan would come to fruition."
             narrator "Neither light nor darkness. The Gir must have seen past the field, alerted by the ziggurat's tremendous combustion."
